@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "routing": "task-risk-evidence-cost",
   "objective_order": [
     "correctness",
@@ -31,6 +31,8 @@
     "reuse verified outputs and summaries instead of resending unchanged context",
     "security, cryptography, backup integrity, auth, billing, irreversible migrations and privacy-sensitive changes may require T5",
     "critical independent review must use a different provider from the primary author whenever available",
+    "provider plus model is an indivisible execution identity; the same model through another provider is not equivalent",
+    "no client or orchestrator may silently substitute provider or model outside the checked-in allowlist",
     "OpenCode free models must never receive secrets, credentials, private user data, production dumps or other sensitive context",
     "Command Code Muse Spark 1.2 Contributor is a restricted-data route and must never receive secrets, credentials, private user data, payment data, private backups or other sensitive/proprietary context",
     "Command Code Muse Spark 1.2 Contributor is preferred early for non-sensitive coding when it reduces marginal cost without weakening evidence",
@@ -54,6 +56,22 @@
       "reason": "project policy treats the Contributor access tier as restricted-data"
     }
   ],
+  "client_enforcement": {
+    "default": "fail-closed",
+    "closed_allowlist": true,
+    "provider_model_binding": "strict",
+    "automatic_model_substitution": false,
+    "automatic_provider_substitution": false,
+    "traycer": {
+      "policy": "traycer-policy.json",
+      "handoff_template": "traycer-handoff-template.md",
+      "agents_md_required": true,
+      "custom_model_profile_required": true,
+      "custom_handoff_template_required": true,
+      "unresolved_pair_action": "abort",
+      "wrong_runtime_pair_invalidates_evidence": true
+    }
+  },
   "tier_distribution_target": {
     "T0": "25-35%",
     "T1": "30-40%",
