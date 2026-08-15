@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "routing": "task-risk-evidence-cost",
   "objective_order": [
     "correctness",
@@ -32,8 +32,8 @@
     "security, cryptography, backup integrity, auth, billing, irreversible migrations and privacy-sensitive changes may require T5",
     "critical independent review must use a different provider from the primary author whenever available",
     "OpenCode free models must never receive secrets, credentials, private user data, production dumps or other sensitive context",
-    "Muse Spark 1.2 Contributor must never receive secrets, credentials, private user data, payment data, private backups or other sensitive/proprietary context because Contributor activity may be used to improve Meta products",
-    "Muse Spark 1.2 Contributor is preferred early for non-sensitive coding when it reduces marginal cost without weakening evidence",
+    "Command Code Muse Spark 1.2 Contributor is a restricted-data route and must never receive secrets, credentials, private user data, payment data, private backups or other sensitive/proprietary context",
+    "Command Code Muse Spark 1.2 Contributor is preferred early for non-sensitive coding when it reduces marginal cost without weakening evidence",
     "Muse Spark 1.2 Contributor cannot serve as final T4/T5 security, privacy, crypto, billing or irreversible-data authority",
     "Big Pickle is never an authority for security-critical or architecture-locking decisions",
     "model choice is operational policy and must not become canonical product architecture"
@@ -47,11 +47,11 @@
       "reason": "free-period provider policies may permit data collection/model improvement"
     },
     {
-      "provider": "meta",
+      "provider": "command-code",
       "models": ["muse-spark-1.2-contributor"],
       "allowed_context": "public-or-non-sensitive-only",
       "sensitive_context_action": "skip-restricted-route",
-      "reason": "Contributor tier permits activity to be used to improve Meta products"
+      "reason": "project policy treats the Contributor access tier as restricted-data"
     }
   ],
   "tier_distribution_target": {
