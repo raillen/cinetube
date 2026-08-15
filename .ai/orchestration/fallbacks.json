@@ -1,11 +1,39 @@
 {
-  "version": 2,
+  "version": 3,
   "rules": [
-    "availability fallback",
-    "quality fallback after bounded failed attempts",
-    "targeted context expansion before broad re-read",
-    "cross-provider review for high-risk changes when possible",
-    "human escalation after fallback/budget exhaustion"
+    "T0 deterministic evidence is always attempted first when applicable",
+    "availability failure falls back laterally within the same tier/provider budget before escalating quality tier",
+    "quality escalation requires failed tests, failed gates, invalid contract output, repeated bounded patch failure, or explicit task risk",
+    "model self-reported uncertainty alone is not escalation evidence",
+    "expand only the missing context before moving to a stronger model",
+    "never retry indefinitely; one serious attempt per model is the default unless evidence identifies a narrow repair",
+    "sensitive context skips all OpenCode free models",
+    "Big Pickle cannot close architecture, security, crypto, billing, privacy or irreversible-data decisions",
+    "T5 requires independent outputs from Google and Command Code when both providers are available",
+    "after budget or provider exhaustion, escalate to human rather than silently changing policy"
+  ],
+  "transitions": {
+    "T0": {"not-applicable-or-insufficient": "T1"},
+    "T1": {"evidence-pass": "DONE", "quality-fail": "T2", "sensitive-context": "T2", "all-free-unavailable": "T2"},
+    "T2": {"evidence-pass": "DONE", "bounded-quality-fail": "T3", "high-risk-gate": "T4"},
+    "T3": {"evidence-pass": "DONE", "critical-risk": "T4", "bounded-quality-fail": "T4"},
+    "T4": {"evidence-pass-noncritical": "DONE", "critical-change": "T5"},
+    "T5": {"independent-agreement-and-evidence-pass": "DONE", "material-disagreement": "HUMAN_REVIEW", "budget-exhausted": "HUMAN_REVIEW"}
+  },
+  "lateral_fallbacks": {
+    "T1": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle"],
+    "T2": ["command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
+    "T3": ["command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
+    "T4": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+  },
+  "evidence_examples": [
+    "compiler/build failure",
+    "unit/integration/e2e test failure",
+    "benchmark regression beyond budget",
+    "schema/contract validation failure",
+    "security gate failure",
+    "architecture invariant violation",
+    "two bounded patches failing the same acceptance criterion"
   ],
   "unbounded_retry": false,
   "unbounded_recursion": false

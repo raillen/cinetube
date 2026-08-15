@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "selection_formula": "agent + task-risk + evidence + sensitivity + modality -> tier -> route",
+  "global_routes": {
+    "T0": ["deterministic-tools"],
+    "T1": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle"],
+    "T2": ["command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
+    "T3": ["command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
+    "T4": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
+    "T5": [
+      ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
+      ["google/gemini-3.1-pro", "command-code/glm-5.2"]
+    ]
+  },
+  "roles": {
+    "explorer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "command-code/deepseek-v4-flash"],
+      "special": {"multimodal-or-very-complex": "google/gemini-3.7-flash"}
+    },
+    "architect": {
+      "default_tier": "T2",
+      "route": ["google/gemini-3.7-flash", "command-code/glm-5.2", "command-code/gpt-5.6-luna"],
+      "critical": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
+      "critical_mode": "T5"
+    },
+    "implementer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+    },
+    "frontend-engineer": {
+      "default_tier": "T1",
+      "route": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free", "command-code/minimax-m3", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"],
+      "special": {"visual-or-multimodal": "google/gemini-3.7-flash"}
+    },
+    "backend-engineer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+    },
+    "database-engineer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
+      "critical": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
+      "critical_mode": "T5"
+    },
+    "networking-engineer": {
+      "default_tier": "T2",
+      "route": ["command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
+    },
+    "ux-architect": {
+      "default_tier": "T2",
+      "route": ["google/gemini-3.7-flash", "opencode/mimo-v2.5-free", "command-code/minimax-m3", "google/gemini-3.1-pro"]
+    },
+    "design-system-engineer": {
+      "default_tier": "T2",
+      "route": ["google/gemini-3.7-flash", "opencode/mimo-v2.5-free", "command-code/minimax-m3", "command-code/gpt-5.6-luna"]
+    },
+    "accessibility-reviewer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "google/gemini-3.7-flash", "command-code/deepseek-v4-flash"],
+      "special": {"screenshot-or-visual-audit": "google/gemini-3.7-flash"}
+    },
+    "security-architect": {
+      "default_tier": "T4",
+      "route": ["google/gemini-3.1-pro", "command-code/glm-5.2", "command-code/gpt-5.6-luna"],
+      "critical_mode": "T5",
+      "independent_reviewer": "command-code/gpt-5.6-luna"
+    },
+    "security-reviewer": {
+      "default_tier": "T4",
+      "route": ["command-code/gpt-5.6-luna", "google/gemini-3.1-pro", "command-code/glm-5.2"],
+      "critical_mode": "T5",
+      "independence_rule": "must-not-use-same-provider-and-model-as-primary-author-when-alternative-exists"
+    },
+    "tester": {
+      "default_tier": "T0",
+      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"]
+    },
+    "quality-reviewer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
+    },
+    "reviewer": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "google/gemini-3.7-flash", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
+      "critical_mode": "T5"
+    },
+    "debugger": {
+      "default_tier": "T2",
+      "route": ["command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"]
+    },
+    "documentation-maintainer": {
+      "default_tier": "T1",
+      "route": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free", "opencode/big-pickle", "google/gemini-3.7-flash"]
+    },
+    "release-verifier": {
+      "default_tier": "T0",
+      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/gpt-5.6-luna"],
+      "critical_release": "T5"
+    },
+    "issue-author": {
+      "default_tier": "T1",
+      "route": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free", "opencode/big-pickle"]
+    },
+    "issue-triager": {
+      "default_tier": "T1",
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle"]
+    }
+  }
+}

@@ -1,27 +1,56 @@
 {
-  "version": 1,
-  "routing": "capability-risk-cost",
-  "principles": [
-    "use cheapest capable model for low-risk repetitive work",
-    "escalate on failed evidence not model confidence",
-    "require independent review for security/storage/crypto/provider-boundary changes",
-    "do not persist provider-specific prompts as canonical architecture"
+  "version": 2,
+  "routing": "task-risk-evidence-cost",
+  "objective_order": [
+    "correctness",
+    "security",
+    "verification",
+    "token-efficiency",
+    "marginal-cost",
+    "latency"
   ],
-  "roles": {
-    "architect": {
-      "quality": "high"
-    },
-    "implementer": {
-      "quality": "high"
-    },
-    "explorer": {
-      "cost": "low"
-    },
-    "tester": {
-      "cost": "low"
-    },
-    "security-reviewer": {
-      "quality": "highest"
-    }
-  }
+  "tier_policy": {
+    "T0": "deterministic-tools-no-llm",
+    "T1": "free-worker",
+    "T2": "economic-paid-worker",
+    "T3": "senior-worker",
+    "T4": "critical-reasoning",
+    "T5": "independent-cross-provider-verification"
+  },
+  "effort_policy": {
+    "command-code/gpt-5.6-luna": "extra-high",
+    "paid_models_default": "high",
+    "free_models_default": "maximum-supported",
+    "allow_effort_downgrade": false
+  },
+  "principles": [
+    "run deterministic tools before asking an LLM whenever evidence can answer the question",
+    "use the cheapest capable model for low-risk work",
+    "do not escalate because a model reports uncertainty; escalate on failed evidence, risk gates, or bounded failed attempts",
+    "prefer targeted context expansion over broad repository rereads",
+    "reuse verified outputs and summaries instead of resending unchanged context",
+    "security, cryptography, backup integrity, auth, billing, irreversible migrations and privacy-sensitive changes may require T5",
+    "critical independent review must use a different provider from the primary author whenever available",
+    "free OpenCode models must never receive secrets, credentials, private user data, production dumps or other sensitive context",
+    "Big Pickle is never an authority for security-critical or architecture-locking decisions",
+    "model choice is operational policy and must not become canonical product architecture"
+  ],
+  "free_pool_security": {
+    "provider": "opencode",
+    "models": ["deepseek-v4-flash-free", "mimo-v2.5-free", "big-pickle"],
+    "allowed_context": "public-or-non-sensitive-only",
+    "sensitive_context_action": "skip-T1-free-pool",
+    "reason": "free-period provider policies may permit data collection/model improvement"
+  },
+  "tier_distribution_target": {
+    "T0": "25-35%",
+    "T1": "30-40%",
+    "T2": "20-30%",
+    "T3": "5-10%",
+    "T4": "2-5%",
+    "T5": "<2%"
+  },
+  "catalog": "model-catalog.json",
+  "role_routes": "model-routing.json",
+  "fallbacks": "fallbacks.json"
 }

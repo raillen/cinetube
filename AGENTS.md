@@ -12,7 +12,6 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 4. `docs/ATLAS.md`
 5. Goal ativo
 6. ADRs/contratos diretamente relacionados
-7. resolver somente o workforce exigido pelo Goal/Task
 
 ## Invariantes
 
@@ -32,21 +31,20 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 - Nunca armazenar chaves de criptografia junto do banco/backup.
 - Nenhum segredo em frontend, Git ou logs.
 
-## Workforce sob demanda
-
-- `.ai/*/manifest.json` são manifests de dependência, não cópias locais de workforce.
-- Leia `.ai/orchestration/workforce-sources.json` e `docs/developer/WORKFORCE_DEPENDENCIES.md`.
-- Resolva somente Agents, Skills e Recipes requeridos pelo Goal/Task.
-- Use apenas source fixada por commit SHA e cache previamente verificado.
-- Não baixar ou injetar o catálogo completo por conveniência.
-- Cache derivado fica fora do Git em `.atlas/cache/` ou no cache global do Project Atlas.
-- Falha de integridade é fail-closed.
-- Upgrade de workforce exige mudança explícita do pin e revisão.
-- Papel de Agent e escolha de LLM são independentes; modelos/fallbacks são definidos em policy própria.
-
 ## Arquitetura alvo
 
 `UI Svelte -> MediaClient -> Wails adapter -> Application Services -> Domain/Ports -> Adapters (providers, DB, filesystem)`.
+
+## Workforce e modelos
+
+- Agents/skills/recipes são dependências resolvidas sob demanda a partir da source pinada em `.ai/orchestration/workforce-sources.json`.
+- Nunca copie todo o workforce para o projeto por conveniência; use o menor bundle necessário ao Goal/Task.
+- Antes de chamar LLM, tente evidência T0 determinística quando aplicável.
+- Roteamento de LLM obedece `.ai/orchestration/model-policy.json`, `model-catalog.json`, `model-routing.json` e `fallbacks.json`.
+- GPT-5.6 Luna usa sempre `extra-high`; outros modelos pagos usam `high`; gratuitos usam effort máximo suportado.
+- OpenCode free pool é somente para contexto público/não sensível.
+- Escalone por evidência, gate ou risco explícito; nunca por insegurança declarada do modelo.
+- T5 crítico exige revisão independente cross-provider quando disponível.
 
 ## Qualidade
 
@@ -55,7 +53,7 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 - Segurança: threat model e security review obrigatórios para storage, backup, player remoto e qualquer cloud futura.
 - Acessibilidade: teclado completo, foco visível, contraste e reduced motion.
 
-## Dependências de runtime
+## Dependências
 
 Não adicionar framework/biblioteca apenas por conveniência. Para cada dependência de runtime registre: problema resolvido, custo de bundle/memória, manutenção, licença e alternativa nativa.
 

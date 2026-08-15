@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "providers": {
+    "google": {
+      "models": {
+        "gemini-3.7-flash": {
+          "class": "paid-or-plan-quota",
+          "effort": "high",
+          "tiers": ["T2", "T3"],
+          "strengths": ["agentic-coding", "multimodal-ui", "architecture-analysis", "review"],
+          "sensitive_context": true,
+          "availability": "verify-live-provider-before-run",
+          "notes": "Current provider model selected by project owner; recently released model labels may precede documentation updates."
+        },
+        "gemini-3.1-pro": {
+          "class": "premium",
+          "effort": "high",
+          "tiers": ["T4", "T5"],
+          "strengths": ["deep-reasoning", "architecture", "security-analysis", "independent-review"],
+          "sensitive_context": true,
+          "availability": "verify-live-provider-before-run"
+        }
+      }
+    },
+    "opencode": {
+      "models": {
+        "deepseek-v4-flash-free": {
+          "class": "free-limited-time",
+          "effort": "maximum-supported",
+          "tiers": ["T1"],
+          "strengths": ["repository-exploration", "low-risk-coding", "tests", "mechanical-refactors"],
+          "sensitive_context": false,
+          "data_policy": "free-period-data-may-be-used-for-model-improvement"
+        },
+        "mimo-v2.5-free": {
+          "class": "free-limited-time",
+          "effort": "maximum-supported",
+          "tiers": ["T1"],
+          "strengths": ["documentation", "frontend-code", "tests", "issue-work"],
+          "sensitive_context": false,
+          "data_policy": "free-period-data-may-be-used-for-model-improvement"
+        },
+        "big-pickle": {
+          "class": "free-limited-time-stealth",
+          "effort": "maximum-supported",
+          "tiers": ["T1"],
+          "strengths": ["low-risk-general-work", "alternative-free-attempt"],
+          "sensitive_context": false,
+          "authority": "never-critical-authority",
+          "data_policy": "free-period-data-may-be-used-for-model-improvement"
+        }
+      }
+    },
+    "command-code": {
+      "models": {
+        "deepseek-v4-flash": {
+          "class": "economic-paid",
+          "effort": "high",
+          "tiers": ["T2"],
+          "strengths": ["daily-implementation", "backend", "debugging", "tests", "refactoring"],
+          "sensitive_context": true
+        },
+        "minimax-m3": {
+          "class": "economic-paid",
+          "effort": "high",
+          "tiers": ["T2"],
+          "strengths": ["implementation", "frontend", "alternative-worker", "parallel-independent-attempt"],
+          "sensitive_context": true
+        },
+        "gpt-5.6-luna": {
+          "class": "senior-paid",
+          "effort": "extra-high",
+          "tiers": ["T3", "T4", "T5"],
+          "strengths": ["difficult-implementation", "debugging", "multi-file-refactor", "review", "critical-code"],
+          "sensitive_context": true,
+          "effort_locked": true
+        },
+        "glm-5.2": {
+          "class": "senior-paid",
+          "effort": "high",
+          "tiers": ["T3", "T4", "T5"],
+          "strengths": ["long-horizon-reasoning", "architecture", "large-context-analysis", "critical-review"],
+          "sensitive_context": true
+        }
+      }
+    }
+  },
+  "admission": {
+    "only_listed_models": true,
+    "new_model_requires_explicit_policy_update": true,
+    "live_availability_must_be_checked_by_orchestrator": true
+  }
+}

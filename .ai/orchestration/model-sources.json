@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "sources": {
+    "opencode_free_pool": {
+      "url": "https://opencode.ai/docs/zen",
+      "checked_at": "2026-08-15",
+      "supports": ["deepseek-v4-flash-free", "mimo-v2.5-free", "big-pickle"],
+      "notes": [
+        "free availability is limited-time and must be checked live",
+        "provider states free-period data may be used for model improvement; do not send sensitive context"
+      ]
+    },
+    "command_code": {
+      "url": "https://commandcode.ai/docs/reference/cli/models",
+      "checked_at": "2026-08-15",
+      "notes": ["live model list should be verified with provider/CLI before execution"]
+    },
+    "google": {
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "checked_at": "2026-08-15",
+      "notes": [
+        "Gemini 3.7 Flash is project-owner confirmed/current-provider selection and was released recently; live provider identifier must be verified because official catalog pages can lag provider rollout"
+      ]
+    }
+  },
+  "policy": "External model catalogs are evidence for availability only; project permission is controlled by model-catalog.json."
+}
