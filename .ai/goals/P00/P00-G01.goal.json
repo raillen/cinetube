@@ -2,7 +2,7 @@
   "id": "P00-G01",
   "title": "Desktop Foundation & MVP Architecture",
   "phase": "P00",
-  "revision": 1,
+  "revision": 2,
   "state": "PLANNED",
   "objective": "Criar a fundação executável do CineTube desktop com Wails v3, Go e Svelte, preservando os contratos local-first, provider-agnostic e performance-first definidos na documentação.",
   "constraints": [
@@ -12,7 +12,8 @@
     "Sem hospedagem ou extração não documentada de mídia",
     "Domínio independente de Wails/providers",
     "Dados pessoais locais por padrão",
-    "Workforce de IA é resolvido sob demanda e nunca copiado integralmente por padrão"
+    "Workforce de IA é resolvido sob demanda e nunca copiado integralmente por padrão",
+    "Quando Traycer for usado, provider + model + effort devem corresponder exatamente à política Atlas; substituição silenciosa invalida a execução"
   ],
   "non_goals": ["Android", "Web/PWA", "Turso Cloud sync", "Mercado Pago", "Google Drive auto-backup", "comunidade pública"],
   "acceptance": [
@@ -26,13 +27,29 @@
     "Baseline de startup/memória/tempo de renderização é registrado como evidência",
     "Threat model do player remoto e storage é validado",
     "Workforce necessário ao Goal é resolvido somente a partir de source pinada e cache verificado",
+    "Se Traycer participar da execução, cada handoff registra Goal/Task, Agent, Tier, provider, model, effort, sensitivity e acceptance evidence antes de executar",
+    "Nenhuma evidência gerada por Traycer/coding agent com par provider-model diferente do resolvido é aceita como evidência deste Goal",
     "Documentação afetada permanece sincronizada"
   ],
   "gates": {
-    "build": "required", "tests": "required", "architecture-review": "required", "security-review": "required", "performance-baseline": "required", "workforce-integrity": "required", "docs-delta": "required"
+    "build": "required",
+    "tests": "required",
+    "architecture-review": "required",
+    "security-review": "required",
+    "performance-baseline": "required",
+    "workforce-integrity": "required",
+    "traycer-model-compliance": "required-if-traycer-used",
+    "docs-delta": "required"
   },
   "context": {
-    "entry": ["docs/architecture/SYSTEM_ARCHITECTURE.md", "docs/implementation/STACK.md", "docs/implementation/REPOSITORY_STRUCTURE.md", "docs/security/THREAT_MODEL.md", "docs/developer/WORKFORCE_DEPENDENCIES.md"],
+    "entry": [
+      "docs/architecture/SYSTEM_ARCHITECTURE.md",
+      "docs/implementation/STACK.md",
+      "docs/implementation/REPOSITORY_STRUCTURE.md",
+      "docs/security/THREAT_MODEL.md",
+      "docs/developer/WORKFORCE_DEPENDENCIES.md",
+      "docs/developer/TRAYCER_INTEGRATION.md"
+    ],
     "budget": "medium"
   },
   "workforce": {
@@ -41,10 +58,17 @@
     "source": ".ai/orchestration/workforce-sources.json",
     "bundles_manifest": ".ai/orchestration/workforce-bundles.json"
   },
+  "traycer": {
+    "policy": ".ai/orchestration/traycer-policy.json",
+    "handoff_template": ".ai/orchestration/traycer-handoff-template.md",
+    "mode": "fail-closed",
+    "actual_pair_required_in_evidence": true
+  },
   "dependencies": [],
   "evidence": [],
   "history": [
     {"at": "2026-08-15T20:15:03Z", "event": "created", "note": "Documentation baseline established before implementation."},
-    {"at": "2026-08-15T20:56:00Z", "event": "workforce-resolution-policy-added", "note": "Goal now resolves only the agents, skills and recipes it needs from a commit-pinned Project Atlas source."}
+    {"at": "2026-08-15T20:56:00Z", "event": "workforce-resolution-policy-added", "note": "Goal now resolves only the agents, skills and recipes it needs from a commit-pinned Project Atlas source."},
+    {"at": "2026-08-15T22:40:00Z", "event": "traycer-model-enforcement-added", "note": "Traycer executions now require strict provider+model+effort preflight and fail-closed compliance to count as Goal evidence."}
   ]
 }
