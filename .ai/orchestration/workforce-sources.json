@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "policy": {
+    "resolution": "on-demand",
+    "selection": "goal-scoped",
+    "least_workforce": true,
+    "moving_refs_allowed": false,
+    "unverified_remote_content_allowed": false,
+    "fail_closed_on_integrity_error": true,
+    "offline_behavior": "use-only-previously-verified-cache"
+  },
+  "sources": [
+    {
+      "id": "project-atlas-framework",
+      "type": "git",
+      "repository": "raillen/project-atlas-framework",
+      "repository_url": "https://github.com/raillen/project-atlas-framework",
+      "framework_version": "0.2.0",
+      "ref_type": "commit",
+      "ref": "de47dfe9c12c1b5136356c50ffe831e6ec6e1f67",
+      "paths": {
+        "agents": "src/project_atlas/resources/workforce/agents/{id}",
+        "skills": "src/project_atlas/resources/workforce/skills/{id}",
+        "recipes": "src/project_atlas/resources/workforce/recipes/{id}"
+      },
+      "integrity": {
+        "strategy": "pinned-git-commit",
+        "expected_commit": "de47dfe9c12c1b5136356c50ffe831e6ec6e1f67",
+        "artifact_digest": "optional-on-materialization"
+      }
+    }
+  ],
+  "cache": {
+    "resolution_order": [
+      "global-verified-cache",
+      "project-verified-cache",
+      "remote-pinned-source"
+    ],
+    "global_path": "~/.project-atlas/workforce/project-atlas-framework/{ref}",
+    "project_path": ".atlas/cache/workforce/project-atlas-framework/{ref}",
+    "git_tracked": false
+  },
+  "upgrade": {
+    "automatic": false,
+    "require_explicit_ref_change": true,
+    "review_changed_workforce": true
+  }
+}

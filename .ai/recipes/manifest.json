@@ -1,29 +1,17 @@
 {
-  "generated_by": {
-    "project_atlas": "0.2.0"
+  "version": 2,
+  "generated_by": {"project_atlas": "0.2.0"},
+  "semantics": "dependency-manifest",
+  "resolution": {
+    "mode": "on-demand",
+    "source": "project-atlas-framework",
+    "source_manifest": "../orchestration/workforce-sources.json",
+    "path_template": "src/project_atlas/resources/workforce/recipes/{id}",
+    "materialization": "cache-only",
+    "git_tracked": false
   },
-  "recipes": [
-    "ui-feature",
-    "web-feature",
-    "security-review",
-    "quality-gate",
-    "release-verification"
-  ],
+  "recipes": ["ui-feature", "web-feature", "security-review", "quality-gate", "release-verification"],
   "reasons": {
-    "ui-feature": [
-      "CineTube project profile"
-    ],
-    "web-feature": [
-      "CineTube project profile"
-    ],
-    "security-review": [
-      "CineTube project profile"
-    ],
-    "quality-gate": [
-      "CineTube project profile"
-    ],
-    "release-verification": [
-      "CineTube project profile"
-    ]
+    "ui-feature": ["CineTube project profile"], "web-feature": ["CineTube project profile"], "security-review": ["CineTube project profile"], "quality-gate": ["CineTube project profile"], "release-verification": ["CineTube project profile"]
   }
 }

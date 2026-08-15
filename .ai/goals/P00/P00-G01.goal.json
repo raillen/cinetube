@@ -11,16 +11,10 @@
     "Sem comentários/notas públicas",
     "Sem hospedagem ou extração não documentada de mídia",
     "Domínio independente de Wails/providers",
-    "Dados pessoais locais por padrão"
+    "Dados pessoais locais por padrão",
+    "Workforce de IA é resolvido sob demanda e nunca copiado integralmente por padrão"
   ],
-  "non_goals": [
-    "Android",
-    "Web/PWA",
-    "Turso Cloud sync",
-    "Mercado Pago",
-    "Google Drive auto-backup",
-    "comunidade pública"
-  ],
+  "non_goals": ["Android", "Web/PWA", "Turso Cloud sync", "Mercado Pago", "Google Drive auto-backup", "comunidade pública"],
   "acceptance": [
     "Projeto Wails v3/Go/Svelte compila em ao menos uma plataforma desktop de desenvolvimento",
     "MediaClient separa componentes Svelte dos bindings Wails",
@@ -31,32 +25,26 @@
     "Testes unitários e de contrato da fundação passam",
     "Baseline de startup/memória/tempo de renderização é registrado como evidência",
     "Threat model do player remoto e storage é validado",
+    "Workforce necessário ao Goal é resolvido somente a partir de source pinada e cache verificado",
     "Documentação afetada permanece sincronizada"
   ],
   "gates": {
-    "build": "required",
-    "tests": "required",
-    "architecture-review": "required",
-    "security-review": "required",
-    "performance-baseline": "required",
-    "docs-delta": "required"
+    "build": "required", "tests": "required", "architecture-review": "required", "security-review": "required", "performance-baseline": "required", "workforce-integrity": "required", "docs-delta": "required"
   },
   "context": {
-    "entry": [
-      "docs/architecture/SYSTEM_ARCHITECTURE.md",
-      "docs/implementation/STACK.md",
-      "docs/implementation/REPOSITORY_STRUCTURE.md",
-      "docs/security/THREAT_MODEL.md"
-    ],
+    "entry": ["docs/architecture/SYSTEM_ARCHITECTURE.md", "docs/implementation/STACK.md", "docs/implementation/REPOSITORY_STRUCTURE.md", "docs/security/THREAT_MODEL.md", "docs/developer/WORKFORCE_DEPENDENCIES.md"],
     "budget": "medium"
+  },
+  "workforce": {
+    "resolution": "on-demand",
+    "bundles": ["foundation-core", "ui-quality", "persistence", "provider-integration", "security"],
+    "source": ".ai/orchestration/workforce-sources.json",
+    "bundles_manifest": ".ai/orchestration/workforce-bundles.json"
   },
   "dependencies": [],
   "evidence": [],
   "history": [
-    {
-      "at": "2026-08-15T20:15:03Z",
-      "event": "created",
-      "note": "Documentation baseline established before implementation."
-    }
+    {"at": "2026-08-15T20:15:03Z", "event": "created", "note": "Documentation baseline established before implementation."},
+    {"at": "2026-08-15T20:56:00Z", "event": "workforce-resolution-policy-added", "note": "Goal now resolves only the agents, skills and recipes it needs from a commit-pinned Project Atlas source."}
   ]
 }

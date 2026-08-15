@@ -7,6 +7,7 @@ Este arquivo é o roteador canônico. Não leia toda a documentação por padrã
 - [`PROJECT_STATE.md`](../PROJECT_STATE.md) — estado real e próxima ação.
 - [`atlas.json`](../atlas.json) — configuração Project Atlas.
 - [Goal ativo](../.ai/goals/P00/P00-G01.goal.json) — critério mensurável de conclusão.
+- [`developer/WORKFORCE_DEPENDENCIES.md`](developer/WORKFORCE_DEPENDENCIES.md) — resolução sob demanda de Agents, Skills e Recipes.
 
 ## Produto
 
@@ -69,8 +70,9 @@ Este arquivo é o roteador canônico. Não leia toda a documentação por padrã
 
 - [`developer/GETTING_STARTED.md`](developer/GETTING_STARTED.md)
 - [`developer/CONTRIBUTING.md`](developer/CONTRIBUTING.md)
+- [`developer/WORKFORCE_DEPENDENCIES.md`](developer/WORKFORCE_DEPENDENCIES.md)
 - [`user/PRODUCT_GUIDE.md`](user/PRODUCT_GUIDE.md)
 
 ## Para agentes
 
-Comece pelo Goal e use somente os links necessários. Não reintroduza funcionalidades explicitamente removidas: comentários/notas públicas, guest mode, cloud obrigatório ou feed infinito.
+Comece pelo Goal, resolva somente o workforce necessário e use apenas os links necessários. Não reintroduza funcionalidades explicitamente removidas: comentários/notas públicas, guest mode, cloud obrigatório ou feed infinito.

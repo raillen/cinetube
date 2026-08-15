@@ -1,81 +1,17 @@
 {
-  "generated_by": {
-    "project_atlas": "0.2.0"
+  "version": 2,
+  "generated_by": {"project_atlas": "0.2.0"},
+  "semantics": "dependency-manifest",
+  "resolution": {
+    "mode": "on-demand",
+    "source": "project-atlas-framework",
+    "source_manifest": "../orchestration/workforce-sources.json",
+    "path_template": "src/project_atlas/resources/workforce/agents/{id}",
+    "materialization": "cache-only",
+    "git_tracked": false
   },
-  "agents": [
-    "explorer",
-    "architect",
-    "implementer",
-    "frontend-engineer",
-    "backend-engineer",
-    "database-engineer",
-    "ux-architect",
-    "design-system-engineer",
-    "accessibility-reviewer",
-    "security-architect",
-    "security-reviewer",
-    "tester",
-    "quality-reviewer",
-    "debugger",
-    "documentation-maintainer",
-    "release-verifier",
-    "issue-author",
-    "issue-triager"
-  ],
+  "agents": ["explorer", "architect", "implementer", "reviewer", "frontend-engineer", "backend-engineer", "database-engineer", "networking-engineer", "ux-architect", "design-system-engineer", "accessibility-reviewer", "security-architect", "security-reviewer", "tester", "quality-reviewer", "debugger", "documentation-maintainer", "release-verifier", "issue-author", "issue-triager"],
   "reasons": {
-    "explorer": [
-      "CineTube project profile"
-    ],
-    "architect": [
-      "CineTube project profile"
-    ],
-    "implementer": [
-      "CineTube project profile"
-    ],
-    "frontend-engineer": [
-      "CineTube project profile"
-    ],
-    "backend-engineer": [
-      "CineTube project profile"
-    ],
-    "database-engineer": [
-      "CineTube project profile"
-    ],
-    "ux-architect": [
-      "CineTube project profile"
-    ],
-    "design-system-engineer": [
-      "CineTube project profile"
-    ],
-    "accessibility-reviewer": [
-      "CineTube project profile"
-    ],
-    "security-architect": [
-      "CineTube project profile"
-    ],
-    "security-reviewer": [
-      "CineTube project profile"
-    ],
-    "tester": [
-      "CineTube project profile"
-    ],
-    "quality-reviewer": [
-      "CineTube project profile"
-    ],
-    "debugger": [
-      "CineTube project profile"
-    ],
-    "documentation-maintainer": [
-      "CineTube project profile"
-    ],
-    "release-verifier": [
-      "CineTube project profile"
-    ],
-    "issue-author": [
-      "CineTube project profile"
-    ],
-    "issue-triager": [
-      "CineTube project profile"
-    ]
+    "explorer": ["CineTube project profile"], "architect": ["CineTube project profile"], "implementer": ["CineTube project profile"], "reviewer": ["CineTube project profile"], "frontend-engineer": ["CineTube project profile"], "backend-engineer": ["CineTube project profile"], "database-engineer": ["CineTube project profile"], "networking-engineer": ["CineTube project profile"], "ux-architect": ["CineTube project profile"], "design-system-engineer": ["CineTube project profile"], "accessibility-reviewer": ["CineTube project profile"], "security-architect": ["CineTube project profile"], "security-reviewer": ["CineTube project profile"], "tester": ["CineTube project profile"], "quality-reviewer": ["CineTube project profile"], "debugger": ["CineTube project profile"], "documentation-maintainer": ["CineTube project profile"], "release-verifier": ["CineTube project profile"], "issue-author": ["CineTube project profile"], "issue-triager": ["CineTube project profile"]
   }
 }

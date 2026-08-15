@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "source_manifest": "workforce-sources.json",
+  "bundles": {
+    "foundation-core": {
+      "agents": ["explorer", "architect", "implementer", "reviewer", "tester", "debugger", "documentation-maintainer"],
+      "skills": ["atlas-navigation", "architecture-quality", "clean-code", "refactoring", "testing-quality", "documentation-quality"],
+      "recipes": ["quality-gate"]
+    },
+    "ui-quality": {
+      "agents": ["frontend-engineer", "ux-architect", "design-system-engineer", "accessibility-reviewer"],
+      "skills": ["frontend-quality", "accessibility", "keyboard-accessibility", "contrast"],
+      "recipes": ["ui-feature"]
+    },
+    "persistence": {
+      "agents": ["database-engineer"],
+      "skills": ["database-review", "caching", "benchmarking"],
+      "recipes": ["quality-gate"]
+    },
+    "provider-integration": {
+      "agents": ["backend-engineer", "networking-engineer"],
+      "skills": ["backend-api", "api-contract-testing", "caching", "benchmarking"],
+      "recipes": ["quality-gate"]
+    },
+    "security": {
+      "agents": ["security-architect", "security-reviewer"],
+      "skills": ["api-security", "auth-security", "threat-modeling"],
+      "recipes": ["security-review"]
+    },
+    "release-quality": {
+      "agents": ["quality-reviewer", "release-verifier"],
+      "skills": ["testing-quality", "benchmarking", "documentation-quality"],
+      "recipes": ["release-verification", "quality-gate"]
+    },
+    "issue-workflow": {
+      "agents": ["issue-author", "issue-triager"],
+      "skills": ["issue-management"],
+      "recipes": []
+    },
+    "future-web": {
+      "agents": ["frontend-engineer", "backend-engineer", "security-architect", "security-reviewer"],
+      "skills": ["frontend-quality", "backend-api", "api-security", "auth-security", "api-contract-testing"],
+      "recipes": ["web-feature", "security-review"]
+    }
+  }
+}

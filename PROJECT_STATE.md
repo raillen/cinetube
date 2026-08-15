@@ -7,15 +7,19 @@
 - Estado do Goal: **PLANNED**
 - Plataforma prioritária: **Desktop**
 - Context methodology: **Lean Progressive Context (LPC)**
-- Última atualização: `2026-08-15T20:15:03Z`
+- Workforce: **on-demand, source pinada por commit**
+- Model routing: **aguardando definição dedicada**
+- Última atualização: `2026-08-15T20:56:00Z`
 
 ## Estado real
 
 O repositório está na fase documental/arquitetural. A documentação define o produto e as fronteiras para implementação, mas não constitui evidência de que o aplicativo já esteja implementado.
 
+O workforce do Project Atlas não é duplicado no CineTube: manifests referenciam uma source commit-pinned e o Goal resolve apenas Agents, Skills e Recipes necessários, usando cache derivado verificado.
+
 ## Próxima ação
 
-Executar e bloquear formalmente `P00-G01`, criando o esqueleto Wails v3/Go/Svelte e os contratos de domínio/providers/storage sem introduzir funcionalidades pós-v1.
+Definir a política de LLMs/fallbacks por papel com foco em economia de tokens e custo; depois bloquear e executar `P00-G01`, criando o esqueleto Wails v3/Go/Svelte e os contratos de domínio/providers/storage sem introduzir funcionalidades pós-v1.
 
 ## Recovery order
 
@@ -24,5 +28,7 @@ Executar e bloquear formalmente `P00-G01`, criando o esqueleto Wails v3/Go/Svelt
 3. `PROJECT_STATE.md`
 4. `docs/ATLAS.md`
 5. `.ai/goals/P00/P00-G01.goal.json`
-6. ADRs relevantes
-7. somente os documentos/código/testes necessários à tarefa
+6. `.ai/orchestration/workforce-sources.json`
+7. `docs/developer/WORKFORCE_DEPENDENCIES.md`
+8. ADRs relevantes
+9. somente os documentos/código/testes/workforce necessários à tarefa

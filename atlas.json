@@ -1,186 +1,54 @@
 {
   "version": 3,
-  "framework": {
-    "name": "project-atlas-framework",
-    "version": "0.2.0"
-  },
-  "project": {
-    "name": "cinetube",
-    "type": [
-      "desktop",
-      "media-center"
-    ],
-    "stage": "pre-implementation",
-    "primary_release": "desktop-v1"
-  },
+  "framework": {"name": "project-atlas-framework", "version": "0.2.0"},
+  "project": {"name": "cinetube", "type": ["desktop", "media-center"], "stage": "pre-implementation", "primary_release": "desktop-v1"},
   "stack": {
-    "languages": [
-      "go",
-      "typescript"
-    ],
-    "desktop": [
-      "wails-v3"
-    ],
-    "frontend": [
-      "svelte-5",
-      "vite",
-      "tailwindcss-v4",
-      "lucide-svelte"
-    ],
-    "storage": [
-      "database/sql",
-      "sqlite-compatible",
-      "tursogo-evaluation"
-    ],
-    "future_web": [
-      "pwa",
-      "hono",
-      "cloudflare-workers",
-      "sqlite-wasm-opfs"
-    ],
-    "future_mobile": [
-      "wails-v3-android"
-    ]
+    "languages": ["go", "typescript"],
+    "desktop": ["wails-v3"],
+    "frontend": ["svelte-5", "vite", "tailwindcss-v4", "lucide-svelte"],
+    "storage": ["database/sql", "sqlite-compatible", "tursogo-evaluation"],
+    "future_web": ["pwa", "hono", "cloudflare-workers", "sqlite-wasm-opfs"],
+    "future_mobile": ["wails-v3-android"]
   },
-  "features": [
-    "ui",
-    "database",
-    "persistence",
-    "search",
-    "media-provider-integration",
-    "backup",
-    "multi-profile",
-    "accessibility",
-    "performance",
-    "security"
-  ],
-  "risk": [
-    "performance-critical",
-    "security",
-    "privacy",
-    "third-party-provider",
-    "external-content",
-    "database",
-    "cross-platform"
-  ],
-  "quality": {
-    "performance": "critical",
-    "security": "high",
-    "accessibility": "wcag-2.2-aa-target",
-    "maintainability": "high",
-    "local_first": true
-  },
+  "features": ["ui", "database", "persistence", "search", "media-provider-integration", "backup", "multi-profile", "accessibility", "performance", "security"],
+  "risk": ["performance-critical", "security", "privacy", "third-party-provider", "external-content", "database", "cross-platform"],
+  "quality": {"performance": "critical", "security": "high", "accessibility": "wcag-2.2-aa-target", "maintainability": "high", "local_first": true},
   "documentation": {
-    "entrypoint": "docs/ATLAS.md",
-    "canonical_format": "markdown",
-    "site": {
-      "enabled": true,
-      "source": "docs",
-      "generated": true,
-      "public_internal_views": true
-    },
-    "audiences": [
-      "user",
-      "developer",
-      "operations",
-      "agent"
-    ],
-    "virtual_chunking": true
+    "entrypoint": "docs/ATLAS.md", "canonical_format": "markdown",
+    "site": {"enabled": true, "source": "docs", "generated": true, "public_internal_views": true},
+    "audiences": ["user", "developer", "operations", "agent"], "virtual_chunking": true
   },
   "context": {
-    "methodology": "lean-progressive-context",
-    "architecture": "progressive-context-architecture",
-    "mode": "progressive",
-    "budget_profile": "medium",
+    "methodology": "lean-progressive-context", "architecture": "progressive-context-architecture", "mode": "progressive", "budget_profile": "medium",
     "profiles": {
-      "small": {
-        "context_target_tokens": 3000,
-        "context_hard_tokens": 6000,
-        "output_target_tokens": 500,
-        "output_hard_tokens": 1000,
-        "max_expansion_rounds": 1,
-        "max_delegation_depth": 0
-      },
-      "medium": {
-        "context_target_tokens": 8000,
-        "context_hard_tokens": 16000,
-        "output_target_tokens": 1500,
-        "output_hard_tokens": 3000,
-        "max_expansion_rounds": 2,
-        "max_delegation_depth": 1
-      },
-      "large": {
-        "context_target_tokens": 16000,
-        "context_hard_tokens": 32000,
-        "output_target_tokens": 3000,
-        "output_hard_tokens": 6000,
-        "max_expansion_rounds": 3,
-        "max_delegation_depth": 1
-      }
+      "small": {"context_target_tokens": 3000, "context_hard_tokens": 6000, "output_target_tokens": 500, "output_hard_tokens": 1000, "max_expansion_rounds": 1, "max_delegation_depth": 0},
+      "medium": {"context_target_tokens": 8000, "context_hard_tokens": 16000, "output_target_tokens": 1500, "output_hard_tokens": 3000, "max_expansion_rounds": 2, "max_delegation_depth": 1},
+      "large": {"context_target_tokens": 16000, "context_hard_tokens": 32000, "output_target_tokens": 3000, "output_hard_tokens": 6000, "max_expansion_rounds": 3, "max_delegation_depth": 1}
     },
-    "deep_recursion": {
-      "enabled": false,
-      "experimental": true
-    },
-    "runtime": {
-      "database": ".atlas/runtime/atlas.db",
-      "completed_context_ttl": "0d",
-      "failed_context_ttl": "7d"
-    }
+    "deep_recursion": {"enabled": false, "experimental": true},
+    "runtime": {"database": ".atlas/runtime/atlas.db", "completed_context_ttl": "0d", "failed_context_ttl": "7d"}
   },
-  "intelligence": {
-    "enabled": true,
-    "path": ".atlas/history/project-intelligence.json",
-    "task_reports": true,
-    "track_input_tokens": true,
-    "track_output_tokens": true,
-    "track_cost": true,
-    "distinguish_observed_estimated": true
-  },
-  "orchestration": {
-    "protocol": "POP",
-    "orchestrator": "native",
-    "autonomy": "agentic"
-  },
-  "goals": {
-    "active_phase": "P00",
-    "active_goal": "P00-G01"
-  },
+  "intelligence": {"enabled": true, "path": ".atlas/history/project-intelligence.json", "task_reports": true, "track_input_tokens": true, "track_output_tokens": true, "track_cost": true, "distinguish_observed_estimated": true},
+  "orchestration": {"protocol": "POP", "orchestrator": "native", "autonomy": "agentic"},
+  "goals": {"active_phase": "P00", "active_goal": "P00-G01"},
   "ai": {
-    "orchestrator": "native",
-    "autonomy": "agentic",
+    "orchestrator": "native", "autonomy": "agentic",
     "preferred_models": [
-      {
-        "id": "gpt-5.6",
-        "provider": "openai",
-        "preferred_roles": [
-          "architect",
-          "implementer",
-          "debugger"
-        ]
-      },
-      {
-        "id": "claude",
-        "provider": "anthropic",
-        "preferred_roles": [
-          "reviewer",
-          "security-reviewer"
-        ]
-      },
-      {
-        "id": "gemini",
-        "provider": "google",
-        "preferred_roles": [
-          "explorer",
-          "documentation-maintainer"
-        ]
-      }
+      {"id": "gpt-5.6", "provider": "openai", "preferred_roles": ["architect", "implementer", "debugger"]},
+      {"id": "claude", "provider": "anthropic", "preferred_roles": ["reviewer", "security-reviewer"]},
+      {"id": "gemini", "provider": "google", "preferred_roles": ["explorer", "documentation-maintainer"]}
     ],
-    "routing": "capability-risk-cost",
-    "provider_lock_in": false
+    "routing": "capability-risk-cost", "provider_lock_in": false,
+    "workforce": {
+      "mode": "on-demand",
+      "source_manifest": ".ai/orchestration/workforce-sources.json",
+      "bundles_manifest": ".ai/orchestration/workforce-bundles.json",
+      "materialize_only_goal_dependencies": true,
+      "cache_policy": "global-then-project",
+      "require_pinned_commit": true,
+      "fail_closed_on_integrity_error": true
+    },
+    "model_routing_status": "pending-dedicated-review"
   },
-  "protocol": {
-    "version": 3,
-    "compatible": ">=3 <4"
-  }
+  "protocol": {"version": 3, "compatible": ">=3 <4"}
 }
