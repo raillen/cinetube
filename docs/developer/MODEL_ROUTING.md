@@ -19,7 +19,9 @@ These rules are project-owner decisions and are not dynamically reduced to save 
 
 Economy comes primarily from avoiding unnecessary calls, restricting context, choosing cheaper tiers and stopping when evidence passes.
 
-## Approved model pool
+## Approved model + provider pool
+
+Provider binding is strict. A model is authorized only through the provider listed here; the same model exposed by another provider is not automatically approved.
 
 ### Google
 
@@ -36,46 +38,27 @@ The orchestrator must verify the live provider identifier before invocation beca
 
 These are T1 workers only. Availability and free status are runtime concerns and may change.
 
-**Security restriction:** while the free-period data policy permits use of activity for model improvement, these models may receive only public or non-sensitive project context. Never send credentials, secrets, private user data, production dumps, private backups, payment data or similarly sensitive context to this pool.
+**Security restriction:** these routes may receive only public or non-sensitive project context. Never send credentials, secrets, private user data, production dumps, private backups, payment data or similarly sensitive context to this pool.
 
 `Big Pickle` is a stealth model. It can provide a cheap alternative attempt, but it must never be the final authority for security, cryptography, architecture locks, privacy, billing or irreversible migrations.
 
-### Meta — Muse Code Contributor
-
-- `Muse Spark 1.2 Contributor` — Muse Spark 1.2 accessed through the discounted Contributor tier of Muse Code.
-
-`Contributor` is an **access/data-policy tier**, not a different base model. It is deliberately positioned early in T2 and, for difficult non-sensitive coding, early in T3 because Muse Spark 1.2 is designed for agentic software engineering, long-horizon implementation, debugging, tool use and test/verification loops.
-
-The discount has a material privacy trade-off: Contributor activity may be used to improve Meta products. Therefore this route is treated as **restricted-data**, just like the OpenCode free pool from a context-admission perspective.
-
-Allowed examples:
-
-- public/non-sensitive source code;
-- unit/integration tests and fixtures without private data;
-- ordinary implementation and refactoring;
-- reproducible bugs stripped of sensitive material;
-- public documentation and repository context.
-
-Forbidden examples:
-
-- credentials, tokens and secrets;
-- private user data;
-- payment or Mercado Pago data;
-- real backup contents;
-- production dumps/logs containing private information;
-- proprietary sensitive material;
-- security-critical context where disclosure would increase risk.
-
-Muse Spark 1.2 Contributor is **not admitted to T4 or T5** and cannot be final authority for security, crypto, auth, billing, privacy or irreversible-data decisions. For sensitive work the orchestrator removes it from the route and continues with the lowest valid unrestricted model.
-
 ### Command Code
 
+Approved models:
+
+- `Muse Spark 1.2 Contributor` — economic Contributor route for Muse Spark 1.2.
 - `DeepSeek V4 Flash` — economical paid daily worker.
 - `MiniMax M3` — economical alternative worker.
 - `GPT-5.6 Luna` — senior coding/debugging/review worker, always `extra-high`.
 - `GLM 5.2` — senior long-horizon architecture/reasoning/review worker.
 
-The live provider catalog must be checked before invocation. An unavailable model causes lateral fallback; it does not authorize an unlisted model automatically.
+`Muse Spark 1.2 Contributor` is deliberately positioned early in T2 and, for difficult non-sensitive coding, early in T3 because it is intended for agentic software engineering, long-horizon implementation, debugging, tool use and test/verification loops.
+
+The CineTube policy treats the Contributor route as **restricted-data**. It may be used for public/non-sensitive source code, tests, documentation, ordinary implementation/refactoring and reproducible bugs stripped of sensitive material. It must be skipped for credentials, tokens, private user data, payment data, real backup contents, production dumps/logs containing private information, proprietary sensitive material or security-critical context. Current Command Code terms must be checked at runtime when this classification matters.
+
+Muse Spark 1.2 Contributor is **not admitted to T4 or T5** and cannot be final authority for security, crypto, auth, billing, privacy or irreversible-data decisions.
+
+An unavailable Command Code model causes lateral fallback according to the checked-in route; it does not authorize another provider or an unlisted model automatically.
 
 ## Tier model
 
@@ -105,12 +88,12 @@ Skip T1 entirely for sensitive context.
 
 Default general route for **non-sensitive coding**:
 
-1. Meta Muse Spark 1.2 Contributor (`high`)
+1. Command Code Muse Spark 1.2 Contributor (`high`)
 2. Command Code DeepSeek V4 Flash (`high`)
 3. Command Code MiniMax M3 (`high`)
 4. Google Gemini 3.7 Flash (`high`)
 
-Muse Contributor comes first because the objective is marginal-cost efficiency and it is purpose-built for agentic coding. This ordering is conditional on the context passing the restricted-data check.
+Muse Contributor comes first because the objective is marginal-cost efficiency and it is coding-agent oriented. This ordering is conditional on the context passing the restricted-data check.
 
 For sensitive context, remove Muse Contributor and use:
 
@@ -124,12 +107,12 @@ Agent specialization can reorder T2. Gemini 3.7 Flash remains preferred earlier 
 
 Default non-sensitive coding route:
 
-1. Meta Muse Spark 1.2 Contributor (`high`)
+1. Command Code Muse Spark 1.2 Contributor (`high`)
 2. Command Code GPT-5.6 Luna (`extra-high`)
 3. Command Code GLM 5.2 (`high`)
 4. Google Gemini 3.7 Flash (`high`)
 
-The reason Muse remains first is economic: a difficult long-horizon coding task should get one serious Contributor attempt before consuming Luna/GLM credits when the context is safe to share and deterministic gates can judge the result.
+A difficult long-horizon coding task gets one serious Contributor attempt before consuming Luna/GLM credits when the context is safe and deterministic gates can judge the result.
 
 For sensitive T3 work, Muse is removed and Luna becomes the first senior coding worker.
 
@@ -163,7 +146,7 @@ Typical workflow:
 3. deterministic gates run;
 4. material disagreement escalates to human review instead of endless model voting.
 
-Muse Contributor and the OpenCode free pool are excluded from T5 because independent critical verification must not depend on restricted-data routes.
+Muse Contributor and the OpenCode free pool are excluded from T5.
 
 ## Evidence-driven escalation
 
@@ -205,7 +188,7 @@ Before escalation, add only the missing evidence/context. Do not resend the enti
 | issue-author | T1 | MiMo Free → DS Free → Big Pickle | normally no escalation |
 | issue-triager | T1 | DS Free → MiMo Free → Big Pickle | normally no escalation |
 
-All routes containing Muse Contributor are automatically filtered out for sensitive context.
+All routes containing Command Code Muse Spark 1.2 Contributor are automatically filtered out for sensitive context.
 
 ## Cost controls
 
@@ -213,7 +196,7 @@ All routes containing Muse Contributor are automatically filtered out for sensit
 2. **Reuse evidence:** do not ask multiple models to rediscover the same compiler/test output.
 3. **One serious attempt per model by default:** retries need new evidence or a narrow repair target.
 4. **Stop on pass:** successful tests/gates close low/medium-risk tasks without an expensive ceremonial review.
-5. **Exploit safe cheap routes:** use Muse Contributor early when context is non-sensitive and automated evidence can verify the patch.
+5. **Exploit safe cheap routes:** use Command Code Muse Contributor early when context is non-sensitive and automated evidence can verify the patch.
 6. **Specialize quotas:** reserve Gemini for multimodality/architecture/review and Luna/GLM for tasks that survive cheaper valid attempts or are inherently high risk.
 7. **No unbounded recursion:** fallback depth remains bounded by `fallbacks.json` and the active context budget.
 8. **Track observed usage:** Project Intelligence records tokens, cost, data-policy class, tier, retries, evidence and final outcome.
@@ -221,14 +204,15 @@ All routes containing Muse Contributor are automatically filtered out for sensit
 ## Provider-failure behavior
 
 - Model unavailable/rate-limited: move laterally to the next approved model in the same tier when possible.
-- Entire provider unavailable: use an approved alternate provider at the same tier before escalating quality.
+- Another provider exposing the same underlying model does **not** make that provider/model pair authorized.
+- Entire provider unavailable: use an explicitly approved alternate provider/model pair from the route before escalating quality.
 - Free pool unavailable: enter T2 only if the task still needs an LLM.
-- Sensitive task: remove all restricted-data routes — OpenCode free and Muse Contributor — before selection.
-- T5 provider unavailable: do not silently replace cross-provider review with two models from one provider for security-critical work; require human waiver/review if independence cannot be achieved.
+- Sensitive task: remove all restricted-data routes — OpenCode free and Command Code Muse Contributor — before selection.
+- T5 provider unavailable: do not silently replace cross-provider review with two Command Code models for security-critical work; require human waiver/review if independence cannot be achieved.
 
 ## Updating the policy
 
-Model catalogs and pricing are volatile. Adding/removing a model, changing its effort/tier or changing a provider data-policy classification requires explicit edits to the orchestration manifests and a documentation delta. Runtime discovery does not grant a newly discovered model permission to execute.
+Model catalogs, pricing and provider availability are volatile. Adding/removing a model, changing its effort/tier, changing its provider binding or changing a data-policy classification requires explicit edits to the orchestration manifests and a documentation delta. Runtime discovery does not grant a newly discovered model/provider pair permission to execute.
 
 Do not freeze provider prices in architecture. Cost telemetry should use observed/current provider rates so routing can later be tuned from real CineTube data.
 
