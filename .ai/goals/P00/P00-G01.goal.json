@@ -2,7 +2,7 @@
   "id": "P00-G01",
   "title": "Desktop Foundation & MVP Architecture",
   "phase": "P00",
-  "revision": 2,
+  "revision": 3,
   "state": "PLANNED",
   "objective": "Criar a fundação executável do CineTube desktop com Wails v3, Go e Svelte, preservando os contratos local-first, provider-agnostic e performance-first definidos na documentação.",
   "constraints": [
@@ -13,7 +13,8 @@
     "Domínio independente de Wails/providers",
     "Dados pessoais locais por padrão",
     "Workforce de IA é resolvido sob demanda e nunca copiado integralmente por padrão",
-    "Quando Traycer for usado, provider + model + effort devem corresponder exatamente à política Atlas; substituição silenciosa invalida a execução"
+    "Quando Traycer for usado, provider + model + effort devem corresponder exatamente à política Atlas; substituição silenciosa invalida a execução",
+    "Quando Hermes for usado, ele deve entrar por .hermes.md -> ENTRYPOINT.md e executar somente provider/model/effort com mapping runtime explícito e verificado"
   ],
   "non_goals": ["Android", "Web/PWA", "Turso Cloud sync", "Mercado Pago", "Google Drive auto-backup", "comunidade pública"],
   "acceptance": [
@@ -29,6 +30,8 @@
     "Workforce necessário ao Goal é resolvido somente a partir de source pinada e cache verificado",
     "Se Traycer participar da execução, cada handoff registra Goal/Task, Agent, Tier, provider, model, effort, sensitivity e acceptance evidence antes de executar",
     "Nenhuma evidência gerada por Traycer/coding agent com par provider-model diferente do resolvido é aceita como evidência deste Goal",
+    "Se Hermes participar da execução, .hermes.md inicia o bootstrap, ENTRYPOINT.md é o primeiro documento Atlas e o preflight resolve provider lógico, provider runtime Hermes, model, effort, sensitivity e acceptance evidence",
+    "Nenhuma evidência gerada por Hermes main model, auxiliary model ou delegation com runtime identity diferente da rota Atlas resolvida é aceita como evidência deste Goal",
     "Documentação afetada permanece sincronizada"
   ],
   "gates": {
@@ -38,6 +41,7 @@
     "security-review": "required",
     "performance-baseline": "required",
     "workforce-integrity": "required",
+    "hermes-model-compliance": "required-if-hermes-used",
     "traycer-model-compliance": "required-if-traycer-used",
     "docs-delta": "required"
   },
@@ -48,6 +52,7 @@
       "docs/implementation/REPOSITORY_STRUCTURE.md",
       "docs/security/THREAT_MODEL.md",
       "docs/developer/WORKFORCE_DEPENDENCIES.md",
+      "docs/developer/HERMES_INTEGRATION.md",
       "docs/developer/TRAYCER_INTEGRATION.md"
     ],
     "budget": "medium"
@@ -57,6 +62,13 @@
     "bundles": ["foundation-core", "ui-quality", "persistence", "provider-integration", "security"],
     "source": ".ai/orchestration/workforce-sources.json",
     "bundles_manifest": ".ai/orchestration/workforce-bundles.json"
+  },
+  "hermes": {
+    "bootstrap": ".hermes.md",
+    "policy": ".ai/orchestration/hermes-policy.json",
+    "mode": "fail-closed",
+    "provider_mapping": "explicit-only",
+    "actual_runtime_identity_required_in_evidence": true
   },
   "traycer": {
     "policy": ".ai/orchestration/traycer-policy.json",
@@ -69,6 +81,7 @@
   "history": [
     {"at": "2026-08-15T20:15:03Z", "event": "created", "note": "Documentation baseline established before implementation."},
     {"at": "2026-08-15T20:56:00Z", "event": "workforce-resolution-policy-added", "note": "Goal now resolves only the agents, skills and recipes it needs from a commit-pinned Project Atlas source."},
-    {"at": "2026-08-15T22:40:00Z", "event": "traycer-model-enforcement-added", "note": "Traycer executions now require strict provider+model+effort preflight and fail-closed compliance to count as Goal evidence."}
+    {"at": "2026-08-15T22:40:00Z", "event": "traycer-model-enforcement-added", "note": "Traycer executions now require strict provider+model+effort preflight and fail-closed compliance to count as Goal evidence."},
+    {"at": "2026-08-15T22:55:00Z", "event": "hermes-execution-adapter-added", "note": "Hermes now boots through .hermes.md -> ENTRYPOINT.md and requires explicit runtime provider/model/effort identity to count as Goal evidence."}
   ]
 }
