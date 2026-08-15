@@ -42,7 +42,7 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 - Antes de chamar LLM, tente evidência T0 determinística quando aplicável.
 - Roteamento de LLM obedece `.ai/orchestration/model-policy.json`, `model-catalog.json`, `model-routing.json` e `fallbacks.json`.
 - GPT-5.6 Luna usa sempre `extra-high`; outros modelos pagos usam `high`; gratuitos usam effort máximo suportado.
-- OpenCode free pool e Meta Muse Spark 1.2 Contributor são rotas de contexto restrito: somente material público/não sensível.
+- OpenCode free pool e Command Code Muse Spark 1.2 Contributor são rotas de contexto restrito: somente material público/não sensível.
 - Muse Spark 1.2 Contributor deve ser preferido cedo em T2/T3 para coding não sensível quando reduzir custo, mas nunca é autoridade T4/T5.
 - Escalone por evidência, gate ou risco explícito; nunca por insegurança declarada do modelo.
 - T5 crítico exige revisão independente cross-provider quando disponível.
