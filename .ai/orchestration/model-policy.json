@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "routing": "task-risk-evidence-cost",
   "objective_order": [
     "correctness",
@@ -31,17 +31,29 @@
     "reuse verified outputs and summaries instead of resending unchanged context",
     "security, cryptography, backup integrity, auth, billing, irreversible migrations and privacy-sensitive changes may require T5",
     "critical independent review must use a different provider from the primary author whenever available",
-    "free OpenCode models must never receive secrets, credentials, private user data, production dumps or other sensitive context",
+    "OpenCode free models must never receive secrets, credentials, private user data, production dumps or other sensitive context",
+    "Muse Spark 1.2 Contributor must never receive secrets, credentials, private user data, payment data, private backups or other sensitive/proprietary context because Contributor activity may be used to improve Meta products",
+    "Muse Spark 1.2 Contributor is preferred early for non-sensitive coding when it reduces marginal cost without weakening evidence",
+    "Muse Spark 1.2 Contributor cannot serve as final T4/T5 security, privacy, crypto, billing or irreversible-data authority",
     "Big Pickle is never an authority for security-critical or architecture-locking decisions",
     "model choice is operational policy and must not become canonical product architecture"
   ],
-  "free_pool_security": {
-    "provider": "opencode",
-    "models": ["deepseek-v4-flash-free", "mimo-v2.5-free", "big-pickle"],
-    "allowed_context": "public-or-non-sensitive-only",
-    "sensitive_context_action": "skip-T1-free-pool",
-    "reason": "free-period provider policies may permit data collection/model improvement"
-  },
+  "restricted_data_pools": [
+    {
+      "provider": "opencode",
+      "models": ["deepseek-v4-flash-free", "mimo-v2.5-free", "big-pickle"],
+      "allowed_context": "public-or-non-sensitive-only",
+      "sensitive_context_action": "skip-restricted-route",
+      "reason": "free-period provider policies may permit data collection/model improvement"
+    },
+    {
+      "provider": "meta",
+      "models": ["muse-spark-1.2-contributor"],
+      "allowed_context": "public-or-non-sensitive-only",
+      "sensitive_context_action": "skip-restricted-route",
+      "reason": "Contributor tier permits activity to be used to improve Meta products"
+    }
+  ],
   "tier_distribution_target": {
     "T0": "25-35%",
     "T1": "30-40%",
