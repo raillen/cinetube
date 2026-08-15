@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "providers": {
     "google": {
       "models": {
@@ -51,7 +51,7 @@
         }
       }
     },
-    "meta": {
+    "command-code": {
       "models": {
         "muse-spark-1.2-contributor": {
           "display_name": "Muse Spark 1.2 Contributor",
@@ -63,14 +63,10 @@
           "strengths": ["agentic-coding", "long-horizon-implementation", "debugging", "tool-use", "large-repository-work", "test-and-verify-loops"],
           "sensitive_context": false,
           "critical_authority": false,
-          "data_policy": "contributor-activity-may-be-used-to-improve-meta-products",
+          "data_policy": "contributor-restricted-data-route",
           "availability": "verify-live-provider-before-run",
-          "notes": "Contributor is the discounted access tier for Muse Spark 1.2/Muse Code, not a separate base model. Prefer it early for non-sensitive coding because of its low marginal cost and coding-agent focus; skip it for secrets, private user data, payment data, private backups, proprietary sensitive material, security-critical context, or T4/T5 authority."
-        }
-      }
-    },
-    "command-code": {
-      "models": {
+          "notes": "Muse Spark 1.2 Contributor is accessed through Command Code. Prefer it early for non-sensitive coding because of its low marginal cost and coding-agent focus; skip it for secrets, private user data, payment data, private backups, proprietary sensitive material, security-critical context, or T4/T5 authority."
+        },
         "deepseek-v4-flash": {
           "class": "economic-paid",
           "effort": "high",
