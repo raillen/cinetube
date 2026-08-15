@@ -1,11 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
   "tracking": {
     "record_per_llm_call": [
       "provider",
       "model",
       "tier",
       "effort",
+      "data_policy_class",
       "agent",
       "task_id",
       "input_tokens",
@@ -18,7 +19,7 @@
       "result"
     ],
     "result_values": ["pass", "fail", "partial", "aborted", "unavailable"],
-    "cost_source": ["observed-provider", "estimated-provider-rate", "subscription-quota", "free"]
+    "cost_source": ["observed-provider", "estimated-provider-rate", "subscription-quota", "free", "contributor-discount"]
   },
   "reporting": {
     "per_task": true,
@@ -26,6 +27,7 @@
     "cumulative": true,
     "compare_tier_distribution_to_target": true,
     "flag_unnecessary_escalation": true,
-    "flag_sensitive_free_pool_use": true
+    "flag_sensitive_restricted_pool_use": true,
+    "compare_contributor_savings_to_standard_paid_routes": true
   }
 }
