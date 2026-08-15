@@ -5,7 +5,7 @@
     "foundation-core": {
       "agents": ["explorer", "architect", "implementer", "reviewer", "tester", "debugger", "documentation-maintainer"],
       "skills": ["atlas-navigation", "architecture-quality", "clean-code", "refactoring", "testing-quality", "documentation-quality"],
-      "recipes": ["quality-gate"]
+      "recipes": ["feature-standard"]
     },
     "ui-quality": {
       "agents": ["frontend-engineer", "ux-architect", "design-system-engineer", "accessibility-reviewer"],
@@ -15,12 +15,12 @@
     "persistence": {
       "agents": ["database-engineer"],
       "skills": ["database-review", "caching", "benchmarking"],
-      "recipes": ["quality-gate"]
+      "recipes": ["feature-standard"]
     },
     "provider-integration": {
       "agents": ["backend-engineer", "networking-engineer"],
       "skills": ["backend-api", "api-contract-testing", "caching", "benchmarking"],
-      "recipes": ["quality-gate"]
+      "recipes": ["feature-standard"]
     },
     "security": {
       "agents": ["security-architect", "security-reviewer"],
@@ -30,12 +30,12 @@
     "release-quality": {
       "agents": ["quality-reviewer", "release-verifier"],
       "skills": ["testing-quality", "benchmarking", "documentation-quality"],
-      "recipes": ["release-verification", "quality-gate"]
+      "recipes": ["release", "feature-standard"]
     },
     "issue-workflow": {
       "agents": ["issue-author", "issue-triager"],
       "skills": ["issue-management"],
-      "recipes": []
+      "recipes": ["github-issue"]
     },
     "future-web": {
       "agents": ["frontend-engineer", "backend-engineer", "security-architect", "security-reviewer"],
