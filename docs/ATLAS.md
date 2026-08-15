@@ -72,6 +72,7 @@ Este arquivo é o roteador canônico. Não leia toda a documentação por padrã
 - [`developer/WORKFORCE_DEPENDENCIES.md`](developer/WORKFORCE_DEPENDENCIES.md) — resolução sob demanda de agents/skills/recipes.
 - [`developer/MODEL_ROUTING.md`](developer/MODEL_ROUTING.md) — tiers, modelos, effort, fallback, restrições de dados e economia de tokens/créditos.
 - [`developer/MODEL_COST_ACCOUNTING.md`](developer/MODEL_COST_ACCOUNTING.md) — telemetria de tokens/custo e avaliação dos tiers econômicos.
+- [`developer/TRAYCER_INTEGRATION.md`](developer/TRAYCER_INTEGRATION.md) — configuração obrigatória de AGENTS.md, Custom Model Profile, handoff, provider binding e fail-closed no Traycer.
 - [`user/PRODUCT_GUIDE.md`](user/PRODUCT_GUIDE.md)
 
 ## Orquestração canônica
@@ -83,9 +84,13 @@ Este arquivo é o roteador canônico. Não leia toda a documentação por padrã
 - [`.ai/orchestration/model-routing.json`](../.ai/orchestration/model-routing.json) — rotas por agent.
 - [`.ai/orchestration/fallbacks.json`](../.ai/orchestration/fallbacks.json) — escalonamento baseado em evidência.
 - [`.ai/orchestration/model-telemetry.json`](../.ai/orchestration/model-telemetry.json) — custo, tier, data-policy e resultado por chamada.
+- [`.ai/orchestration/traycer-policy.json`](../.ai/orchestration/traycer-policy.json) — bridge machine-readable entre Traycer e as políticas Atlas; preflight e fail-closed.
+- [`.ai/orchestration/traycer-handoff-template.md`](../.ai/orchestration/traycer-handoff-template.md) — fonte canônica do Custom Hand-off Template do Traycer.
 
 ## Para agentes
 
 Comece pelo Goal e use somente os links necessários. Não reintroduza funcionalidades explicitamente removidas: comentários/notas públicas, guest mode, cloud obrigatório ou feed infinito.
 
 Ao orquestrar LLMs, execute T0 quando aplicável, respeite o effort fixo e não escale sem evidência ou risco explícito. Nunca envie contexto sensível às rotas de dados restritos: OpenCode free pool e Command Code / Muse Spark 1.2 Contributor. Muse Contributor pode ser usado cedo em T2/T3 para código não sensível, mas não participa como autoridade de T4/T5.
+
+Quando Traycer estiver envolvido, `AGENTS.md`, `developer/TRAYCER_INTEGRATION.md` e `.ai/orchestration/traycer-policy.json` são leitura obrigatória. O Traycer deve resolver o par exato `provider + model` antes do handoff e abortar se não puder comprová-lo; prompts não autorizam substituição de provider/model.
