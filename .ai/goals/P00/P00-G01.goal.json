@@ -1,0 +1,62 @@
+{
+  "id": "P00-G01",
+  "title": "Desktop Foundation & MVP Architecture",
+  "phase": "P00",
+  "revision": 1,
+  "state": "PLANNED",
+  "objective": "Criar a fundação executável do CineTube desktop com Wails v3, Go e Svelte, preservando os contratos local-first, provider-agnostic e performance-first definidos na documentação.",
+  "constraints": [
+    "Desktop v1.0 é prioridade",
+    "Sem conta cloud obrigatória",
+    "Sem comentários/notas públicas",
+    "Sem hospedagem ou extração não documentada de mídia",
+    "Domínio independente de Wails/providers",
+    "Dados pessoais locais por padrão"
+  ],
+  "non_goals": [
+    "Android",
+    "Web/PWA",
+    "Turso Cloud sync",
+    "Mercado Pago",
+    "Google Drive auto-backup",
+    "comunidade pública"
+  ],
+  "acceptance": [
+    "Projeto Wails v3/Go/Svelte compila em ao menos uma plataforma desktop de desenvolvimento",
+    "MediaClient separa componentes Svelte dos bindings Wails",
+    "Domain/application packages não importam Wails",
+    "Ports para metadata, catalog/availability, playback, storage e backup existem com adapters testáveis",
+    "Schema inicial suporta múltiplos perfis por user_id/profile_id desde a primeira migration",
+    "Home shell, Search shell, Details shell e Library shell possuem navegação funcional sem feed infinito",
+    "Testes unitários e de contrato da fundação passam",
+    "Baseline de startup/memória/tempo de renderização é registrado como evidência",
+    "Threat model do player remoto e storage é validado",
+    "Documentação afetada permanece sincronizada"
+  ],
+  "gates": {
+    "build": "required",
+    "tests": "required",
+    "architecture-review": "required",
+    "security-review": "required",
+    "performance-baseline": "required",
+    "docs-delta": "required"
+  },
+  "context": {
+    "entry": [
+      "docs/architecture/SYSTEM_ARCHITECTURE.md",
+      "docs/implementation/STACK.md",
+      "docs/implementation/REPOSITORY_STRUCTURE.md",
+      "docs/security/THREAT_MODEL.md"
+    ],
+    "budget": "medium"
+  },
+  "dependencies": [],
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-08-15T20:15:03Z",
+      "event": "created",
+      "note": "Documentation baseline established before implementation."
+    }
+  ]
+}

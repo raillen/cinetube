@@ -1,0 +1,85 @@
+{
+  "generated_by": {
+    "project_atlas": "0.2.0"
+  },
+  "skills": [
+    "atlas-navigation",
+    "architecture-quality",
+    "clean-code",
+    "refactoring",
+    "frontend-quality",
+    "backend-api",
+    "database-review",
+    "caching",
+    "benchmarking",
+    "accessibility",
+    "keyboard-accessibility",
+    "contrast",
+    "api-security",
+    "auth-security",
+    "threat-modeling",
+    "testing-quality",
+    "api-contract-testing",
+    "documentation-quality",
+    "issue-management"
+  ],
+  "reasons": {
+    "atlas-navigation": [
+      "CineTube project profile"
+    ],
+    "architecture-quality": [
+      "CineTube project profile"
+    ],
+    "clean-code": [
+      "CineTube project profile"
+    ],
+    "refactoring": [
+      "CineTube project profile"
+    ],
+    "frontend-quality": [
+      "CineTube project profile"
+    ],
+    "backend-api": [
+      "CineTube project profile"
+    ],
+    "database-review": [
+      "CineTube project profile"
+    ],
+    "caching": [
+      "CineTube project profile"
+    ],
+    "benchmarking": [
+      "CineTube project profile"
+    ],
+    "accessibility": [
+      "CineTube project profile"
+    ],
+    "keyboard-accessibility": [
+      "CineTube project profile"
+    ],
+    "contrast": [
+      "CineTube project profile"
+    ],
+    "api-security": [
+      "CineTube project profile"
+    ],
+    "auth-security": [
+      "CineTube project profile"
+    ],
+    "threat-modeling": [
+      "CineTube project profile"
+    ],
+    "testing-quality": [
+      "CineTube project profile"
+    ],
+    "api-contract-testing": [
+      "CineTube project profile"
+    ],
+    "documentation-quality": [
+      "CineTube project profile"
+    ],
+    "issue-management": [
+      "CineTube project profile"
+    ]
+  }
+}

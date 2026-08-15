@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "routing": "capability-risk-cost",
+  "principles": [
+    "use cheapest capable model for low-risk repetitive work",
+    "escalate on failed evidence not model confidence",
+    "require independent review for security/storage/crypto/provider-boundary changes",
+    "do not persist provider-specific prompts as canonical architecture"
+  ],
+  "roles": {
+    "architect": {
+      "quality": "high"
+    },
+    "implementer": {
+      "quality": "high"
+    },
+    "explorer": {
+      "cost": "low"
+    },
+    "tester": {
+      "cost": "low"
+    },
+    "security-reviewer": {
+      "quality": "highest"
+    }
+  }
+}

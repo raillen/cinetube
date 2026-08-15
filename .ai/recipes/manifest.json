@@ -1,0 +1,29 @@
+{
+  "generated_by": {
+    "project_atlas": "0.2.0"
+  },
+  "recipes": [
+    "ui-feature",
+    "web-feature",
+    "security-review",
+    "quality-gate",
+    "release-verification"
+  ],
+  "reasons": {
+    "ui-feature": [
+      "CineTube project profile"
+    ],
+    "web-feature": [
+      "CineTube project profile"
+    ],
+    "security-review": [
+      "CineTube project profile"
+    ],
+    "quality-gate": [
+      "CineTube project profile"
+    ],
+    "release-verification": [
+      "CineTube project profile"
+    ]
+  }
+}
