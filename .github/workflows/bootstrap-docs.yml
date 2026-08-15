@@ -1,0 +1,25 @@
+name: Bootstrap Project Atlas documentation
+
+on:
+  push:
+    paths:
+      - '.github/docs_bundle.b64'
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack documentation bundle
+        run: |
+          base64 -d .github/docs_bundle.b64 > /tmp/cinetube-docs.tar.gz
+          tar -xzf /tmp/cinetube-docs.tar.gz -C .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Add complete Project Atlas documentation"
+          git push
