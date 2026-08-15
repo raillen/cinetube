@@ -10,8 +10,13 @@
     "materialization": "cache-only",
     "git_tracked": false
   },
-  "recipes": ["ui-feature", "web-feature", "security-review", "quality-gate", "release-verification"],
+  "recipes": ["ui-feature", "web-feature", "security-review", "feature-standard", "release", "github-issue"],
   "reasons": {
-    "ui-feature": ["CineTube project profile"], "web-feature": ["CineTube project profile"], "security-review": ["CineTube project profile"], "quality-gate": ["CineTube project profile"], "release-verification": ["CineTube project profile"]
+    "ui-feature": ["CineTube project profile"],
+    "web-feature": ["CineTube project profile"],
+    "security-review": ["CineTube project profile"],
+    "feature-standard": ["CineTube project profile"],
+    "release": ["CineTube project profile"],
+    "github-issue": ["CineTube project profile"]
   }
 }
