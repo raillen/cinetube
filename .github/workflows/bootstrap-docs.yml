@@ -3,7 +3,7 @@ name: Bootstrap Project Atlas documentation
 on:
   push:
     paths:
-      - '.github/docs_bundle.b64'
+      - '.github/docs_bundle.ready'
 
 permissions:
   contents: write
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Unpack documentation bundle
         run: |
-          base64 -d .github/docs_bundle.b64 > /tmp/cinetube-docs.tar.gz
+          cat .github/docs_bundle.part* | base64 -d > /tmp/cinetube-docs.tar.gz
           tar -xzf /tmp/cinetube-docs.tar.gz -C .
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
