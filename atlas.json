@@ -77,20 +77,21 @@
     "orchestrator": "native",
     "autonomy": "agentic",
     "preferred_models": [
-      {"id": "deepseek-v4-flash-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1"},
-      {"id": "mimo-v2.5-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1"},
-      {"id": "big-pickle", "provider": "opencode", "effort": "maximum-supported", "tier": "T1"},
-      {"id": "deepseek-v4-flash", "provider": "command-code", "effort": "high", "tier": "T2"},
-      {"id": "minimax-m3", "provider": "command-code", "effort": "high", "tier": "T2"},
-      {"id": "gemini-3.7-flash", "provider": "google", "effort": "high", "tier": "T2-T3"},
-      {"id": "gpt-5.6-luna", "provider": "command-code", "effort": "extra-high", "tier": "T3-T5"},
-      {"id": "glm-5.2", "provider": "command-code", "effort": "high", "tier": "T3-T5"},
-      {"id": "gemini-3.1-pro", "provider": "google", "effort": "high", "tier": "T4-T5"}
+      {"id": "deepseek-v4-flash-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
+      {"id": "mimo-v2.5-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
+      {"id": "big-pickle", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
+      {"id": "muse-spark-1.2-contributor", "provider": "meta", "effort": "high", "tier": "T2-T3", "sensitive_context": false, "data_policy": "contributor"},
+      {"id": "deepseek-v4-flash", "provider": "command-code", "effort": "high", "tier": "T2", "sensitive_context": true},
+      {"id": "minimax-m3", "provider": "command-code", "effort": "high", "tier": "T2", "sensitive_context": true},
+      {"id": "gemini-3.7-flash", "provider": "google", "effort": "high", "tier": "T2-T3", "sensitive_context": true},
+      {"id": "gpt-5.6-luna", "provider": "command-code", "effort": "extra-high", "tier": "T3-T5", "sensitive_context": true},
+      {"id": "glm-5.2", "provider": "command-code", "effort": "high", "tier": "T3-T5", "sensitive_context": true},
+      {"id": "gemini-3.1-pro", "provider": "google", "effort": "high", "tier": "T4-T5", "sensitive_context": true}
     ],
     "routing": "task-risk-evidence-cost",
     "provider_lock_in": false,
     "effort_downgrade_allowed": false,
-    "free_sensitive_context_allowed": false
+    "restricted_data_routes_allowed_for_sensitive_context": false
   },
   "protocol": {"version": 3, "compatible": ">=3 <4"}
 }
