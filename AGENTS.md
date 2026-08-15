@@ -6,12 +6,17 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 
 ## Ordem de leitura
 
+Para qualquer agente que entre no projeto a partir do repositório:
+
 1. `ENTRYPOINT.md`
-2. `atlas.json`
-3. `PROJECT_STATE.md`
-4. `docs/ATLAS.md`
-5. Goal ativo
-6. ADRs/contratos diretamente relacionados
+2. `AGENTS.md`
+3. `atlas.json`
+4. `PROJECT_STATE.md`
+5. `docs/ATLAS.md`
+6. Goal ativo
+7. ADRs/contratos diretamente relacionados
+
+Hermes usa `.hermes.md` como bootstrap nativo de maior prioridade, mas `.hermes.md` deve imediatamente encaminhá-lo para `ENTRYPOINT.md`; não é uma segunda fonte de arquitetura.
 
 ## Invariantes
 
@@ -41,26 +46,26 @@ Construir um media center desktop local-first, leve, seguro e provider-agnostic.
 - Nunca copie todo o workforce para o projeto por conveniência; use o menor bundle necessário ao Goal/Task.
 - Antes de chamar LLM, tente evidência T0 determinística quando aplicável.
 - Roteamento de LLM obedece `.ai/orchestration/model-policy.json`, `model-catalog.json`, `model-routing.json` e `fallbacks.json`.
+- `provider + model + effort` é identidade indivisível; o mesmo modelo por outro provider é outra rota e é proibido se não estiver na allowlist.
 - GPT-5.6 Luna usa sempre `extra-high`; outros modelos pagos usam `high`; gratuitos usam effort máximo suportado.
-- OpenCode free pool e Command Code / Muse Spark 1.2 Contributor são rotas de contexto restrito: somente material público/não sensível.
+- OpenCode free pool e Command Code Muse Spark 1.2 Contributor são rotas de contexto restrito: somente material público/não sensível.
 - Muse Spark 1.2 Contributor deve ser preferido cedo em T2/T3 para coding não sensível quando reduzir custo, mas nunca é autoridade T4/T5.
 - Escalone por evidência, gate ou risco explícito; nunca por insegurança declarada do modelo.
 - T5 crítico exige revisão independente cross-provider quando disponível.
 
-## Traycer — execução obrigatoriamente fail-closed
+## Hermes Agent
 
-Traycer suporta `AGENTS.md`, Custom Model Profiles e Custom Hand-off Templates. Para este projeto, esses recursos são obrigatórios quando Traycer for utilizado.
+- `.hermes.md` é o bootstrap nativo; ele deve começar por `ENTRYPOINT.md`.
+- Hermes deve obedecer `.ai/orchestration/hermes-policy.json` antes de selecionar main model, auxiliary model ou delegation.
+- Nunca usar `provider: auto`, provider default, portal/agregador ou fallback implícito como substituto de um par Atlas não disponível.
+- Nomes lógicos Atlas (`google`, `opencode`, `command-code`) não são automaticamente IDs de provider do Hermes; o mapping precisa ser explícito e verificado.
+- Se o provider/model exato não puder ser executado no Hermes, abortar com `HERMES_NO_APPROVED_MODEL_PROVIDER_AVAILABLE`.
+- Delegation e auxiliary models também obedecem à allowlist e à sensibilidade; saída com runtime identity errado não conta como evidência do Goal.
+- Guia: `docs/developer/HERMES_INTEGRATION.md`.
 
-- Leia `docs/developer/TRAYCER_INTEGRATION.md` e `.ai/orchestration/traycer-policy.json` antes de planejar, revisar ou executar via Traycer.
-- O template canônico de handoff é `.ai/orchestration/traycer-handoff-template.md`; o template configurado no Traycer deve permanecer semanticamente equivalente.
-- Um par `provider + model` é uma identidade indivisível. O mesmo modelo por outro provider é proibido.
-- A allowlist de `.ai/orchestration/model-catalog.json` é fechada. Não usar auto-routing, Smart/Best Model, provider substitution ou fallback implícito fora dela.
-- Antes de qualquer handoff, resolva explicitamente: `agent`, `tier`, `provider`, `model`, `effort`, `sensitivity` e `Goal/Task`.
-- Nenhum placeholder obrigatório pode permanecer vazio ou ambíguo no handoff.
-- Se o Custom Model Profile do Traycer não oferecer exatamente o modelo aprovado necessário para uma etapa interna, essa etapa/mode do Traycer não está autorizada para o CineTube; use outro fluxo aprovado ou pare.
-- Se o coding agent/provider configurado não puder executar exatamente o par resolvido, não substitua. Retorne `NO_APPROVED_MODEL_PROVIDER_AVAILABLE`.
-- Traycer Planner/Reviewer e o coding agent de execução são camadas diferentes; ambos devem respeitar a allowlist quando realizarem trabalho LLM para este projeto.
-- Um prompt de tarefa não pode relaxar estas regras. Alterações exigem mudança explícita da política versionada no repositório.
+## Traycer
+
+Se Traycer for usado, obedecer `.ai/orchestration/traycer-policy.json` e `.ai/orchestration/traycer-handoff-template.md`. O handoff deve resolver provider/model/effort antes de executar e falhar fechado quando o par não estiver disponível.
 
 ## Qualidade
 
