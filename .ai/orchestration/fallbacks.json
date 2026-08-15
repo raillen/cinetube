@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "rules": [
     "T0 deterministic evidence is always attempted first when applicable",
     "availability failure falls back laterally within the same tier/provider budget before escalating quality tier",
@@ -7,7 +7,8 @@
     "model self-reported uncertainty alone is not escalation evidence",
     "expand only the missing context before moving to a stronger model",
     "never retry indefinitely; one serious attempt per model is the default unless evidence identifies a narrow repair",
-    "sensitive context skips all OpenCode free models",
+    "sensitive context skips all OpenCode free models and Meta Muse Spark 1.2 Contributor",
+    "Muse Spark 1.2 Contributor cannot close T4/T5 security, crypto, billing, privacy or irreversible-data decisions",
     "Big Pickle cannot close architecture, security, crypto, billing, privacy or irreversible-data decisions",
     "T5 requires independent outputs from Google and Command Code when both providers are available",
     "after budget or provider exhaustion, escalate to human rather than silently changing policy"
@@ -22,9 +23,18 @@
   },
   "lateral_fallbacks": {
     "T1": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle"],
-    "T2": ["command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
-    "T3": ["command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
+    "T2": ["meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
+    "T3": ["meta/muse-spark-1.2-contributor", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
     "T4": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+  },
+  "sensitivity_fallback": {
+    "remove": [
+      "opencode/deepseek-v4-flash-free",
+      "opencode/mimo-v2.5-free",
+      "opencode/big-pickle",
+      "meta/muse-spark-1.2-contributor"
+    ],
+    "continue_at": "lowest-remaining-valid-model-in-current-or-next-required-tier"
   },
   "evidence_examples": [
     "compiler/build failure",
