@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "type": "project-atlas-traycer-bridge",
+  "purpose": "Prevent Traycer from silently selecting unapproved models/providers when planning, reviewing, or handing off CineTube work.",
+  "canonical_sources": {
+    "agents": "AGENTS.md",
+    "model_policy": ".ai/orchestration/model-policy.json",
+    "model_catalog": ".ai/orchestration/model-catalog.json",
+    "model_routing": ".ai/orchestration/model-routing.json",
+    "fallbacks": ".ai/orchestration/fallbacks.json",
+    "human_guide": "docs/developer/TRAYCER_INTEGRATION.md",
+    "handoff_template": ".ai/orchestration/traycer-handoff-template.md"
+  },
+  "traycer_capabilities": {
+    "agents_md_required": true,
+    "custom_model_profile_required": true,
+    "custom_handoff_template_required": true,
+    "repository_native_model_profile_file": "not-documented-as-of-2026-08-15",
+    "invent_traycer_config_file": false
+  },
+  "enforcement": {
+    "mode": "fail-closed",
+    "closed_allowlist": true,
+    "provider_model_binding": "strict",
+    "provider_substitution": false,
+    "model_substitution": false,
+    "implicit_fallback": false,
+    "automatic_best_model": false,
+    "automatic_provider_routing": false,
+    "task_prompt_may_override_policy": false
+  },
+  "internal_traycer_llm": {
+    "planner_and_reviewer_must_use_approved_models": true,
+    "if_exact_approved_model_is_not_available_in_custom_profile": "disable-that-traycer-mode-for-this-project",
+    "reasoning_effort_source": ".ai/orchestration/model-policy.json"
+  },
+  "handoff_preflight": {
+    "required": true,
+    "required_fields": [
+      "goal_or_task_id",
+      "agent",
+      "tier",
+      "provider",
+      "model",
+      "effort",
+      "sensitivity",
+      "acceptance_evidence"
+    ],
+    "unresolved_field_action": "abort",
+    "verify_pair_against": ".ai/orchestration/model-catalog.json",
+    "verify_route_against": ".ai/orchestration/model-routing.json",
+    "verify_fallback_against": ".ai/orchestration/fallbacks.json"
+  },
+  "execution": {
+    "coding_agent_must_be_configured_for_exact_pair_before_handoff": true,
+    "handoff_prompt_cannot_substitute_for_platform_model_configuration": true,
+    "stop_on_pass": true,
+    "escalate_only_on_evidence_or_explicit_risk": true
+  },
+  "failure_codes": {
+    "no_exact_pair": "NO_APPROVED_MODEL_PROVIDER_AVAILABLE",
+    "unresolved_handoff": "TRAYCER_HANDOFF_PREFLIGHT_FAILED",
+    "forbidden_substitution": "MODEL_PROVIDER_POLICY_VIOLATION",
+    "critical_cross_provider_unavailable": "CROSS_PROVIDER_VERIFICATION_UNAVAILABLE"
+  }
+}
