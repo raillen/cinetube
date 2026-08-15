@@ -70,20 +70,22 @@ Este arquivo é o roteador canônico. Não leia toda a documentação por padrã
 - [`developer/GETTING_STARTED.md`](developer/GETTING_STARTED.md)
 - [`developer/CONTRIBUTING.md`](developer/CONTRIBUTING.md)
 - [`developer/WORKFORCE_DEPENDENCIES.md`](developer/WORKFORCE_DEPENDENCIES.md) — resolução sob demanda de agents/skills/recipes.
-- [`developer/MODEL_ROUTING.md`](developer/MODEL_ROUTING.md) — tiers, modelos, effort, fallback e economia de tokens/créditos.
+- [`developer/MODEL_ROUTING.md`](developer/MODEL_ROUTING.md) — tiers, modelos, effort, fallback, restrições de dados e economia de tokens/créditos.
+- [`developer/MODEL_COST_ACCOUNTING.md`](developer/MODEL_COST_ACCOUNTING.md) — telemetria de tokens/custo e avaliação dos tiers econômicos.
 - [`user/PRODUCT_GUIDE.md`](user/PRODUCT_GUIDE.md)
 
 ## Orquestração canônica
 
 - [`.ai/orchestration/workforce-sources.json`](../.ai/orchestration/workforce-sources.json) — fonte pinada do Project Atlas.
 - [`.ai/orchestration/workforce-bundles.json`](../.ai/orchestration/workforce-bundles.json) — workforce mínimo por classe de tarefa.
-- [`.ai/orchestration/model-policy.json`](../.ai/orchestration/model-policy.json) — regras globais de tiers e effort.
-- [`.ai/orchestration/model-catalog.json`](../.ai/orchestration/model-catalog.json) — pool permitido de modelos.
+- [`.ai/orchestration/model-policy.json`](../.ai/orchestration/model-policy.json) — regras globais de tiers, effort e sensibilidade.
+- [`.ai/orchestration/model-catalog.json`](../.ai/orchestration/model-catalog.json) — pool permitido de modelos, incluindo Muse Spark 1.2 Contributor.
 - [`.ai/orchestration/model-routing.json`](../.ai/orchestration/model-routing.json) — rotas por agent.
 - [`.ai/orchestration/fallbacks.json`](../.ai/orchestration/fallbacks.json) — escalonamento baseado em evidência.
+- [`.ai/orchestration/model-telemetry.json`](../.ai/orchestration/model-telemetry.json) — custo, tier, data-policy e resultado por chamada.
 
 ## Para agentes
 
 Comece pelo Goal e use somente os links necessários. Não reintroduza funcionalidades explicitamente removidas: comentários/notas públicas, guest mode, cloud obrigatório ou feed infinito.
 
-Ao orquestrar LLMs, execute T0 quando aplicável, respeite o effort fixo, não envie contexto sensível ao pool gratuito do OpenCode e não escale sem evidência ou risco explícito.
+Ao orquestrar LLMs, execute T0 quando aplicável, respeite o effort fixo e não escale sem evidência ou risco explícito. Nunca envie contexto sensível às rotas de dados restritos: OpenCode free pool e Meta Muse Spark 1.2 Contributor. Muse Contributor pode ser usado cedo em T2/T3 para código não sensível, mas não participa como autoridade de T4/T5.
