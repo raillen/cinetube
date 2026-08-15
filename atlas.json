@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "framework": {
     "name": "project-atlas-framework",
     "version": "0.2.0"
@@ -73,6 +73,7 @@
     "model_catalog": ".ai/orchestration/model-catalog.json",
     "model_routing": ".ai/orchestration/model-routing.json",
     "fallbacks": ".ai/orchestration/fallbacks.json",
+    "hermes_policy": ".ai/orchestration/hermes-policy.json",
     "traycer_policy": ".ai/orchestration/traycer-policy.json",
     "traycer_handoff_template": ".ai/orchestration/traycer-handoff-template.md"
   },
@@ -97,6 +98,17 @@
     "provider_model_pair_is_identity": true,
     "effort_downgrade_allowed": false,
     "restricted_data_routes_allowed_for_sensitive_context": false,
+    "hermes": {
+      "enabled": true,
+      "bootstrap": ".hermes.md",
+      "first_project_document": "ENTRYPOINT.md",
+      "enforcement": "fail-closed",
+      "provider_auto_allowed": false,
+      "provider_mapping": "explicit-only",
+      "implicit_model_or_provider_substitution_allowed": false,
+      "runtime_identity_required_in_evidence": true,
+      "policy": ".ai/orchestration/hermes-policy.json"
+    },
     "traycer": {
       "enabled": true,
       "enforcement": "fail-closed",
