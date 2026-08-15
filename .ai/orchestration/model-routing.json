@@ -1,11 +1,11 @@
 {
-  "version": 2,
+  "version": 3,
   "selection_formula": "agent + task-risk + evidence + sensitivity + modality -> tier -> route",
   "global_routes": {
     "T0": ["deterministic-tools"],
     "T1": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle"],
-    "T2": ["meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
-    "T3": ["meta/muse-spark-1.2-contributor", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
+    "T2": ["command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash"],
+    "T3": ["command-code/muse-spark-1.2-contributor", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"],
     "T4": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
     "T5": [
       ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
@@ -17,44 +17,44 @@
       "opencode/deepseek-v4-flash-free",
       "opencode/mimo-v2.5-free",
       "opencode/big-pickle",
-      "meta/muse-spark-1.2-contributor"
+      "command-code/muse-spark-1.2-contributor"
     ],
     "on_sensitive_context": "remove-restricted-models-and-continue-laterally-at-lowest-valid-tier"
   },
   "roles": {
     "explorer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash"],
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash"],
       "special": {"multimodal-or-very-complex": "google/gemini-3.7-flash"}
     },
     "architect": {
       "default_tier": "T2",
-      "route": ["google/gemini-3.7-flash", "meta/muse-spark-1.2-contributor", "command-code/glm-5.2", "command-code/gpt-5.6-luna"],
+      "route": ["google/gemini-3.7-flash", "command-code/muse-spark-1.2-contributor", "command-code/glm-5.2", "command-code/gpt-5.6-luna"],
       "critical": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
       "critical_mode": "T5"
     },
     "implementer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
     },
     "frontend-engineer": {
       "default_tier": "T1",
-      "route": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free", "meta/muse-spark-1.2-contributor", "command-code/minimax-m3", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"],
+      "route": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free", "command-code/muse-spark-1.2-contributor", "command-code/minimax-m3", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"],
       "special": {"visual-or-multimodal": "google/gemini-3.7-flash"}
     },
     "backend-engineer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2"]
     },
     "database-engineer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
+      "route": ["opencode/deepseek-v4-flash-free", "command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
       "critical": ["google/gemini-3.1-pro", "command-code/gpt-5.6-luna"],
       "critical_mode": "T5"
     },
     "networking-engineer": {
       "default_tier": "T2",
-      "route": ["meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
+      "route": ["command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
     },
     "ux-architect": {
       "default_tier": "T2",
@@ -62,7 +62,7 @@
     },
     "design-system-engineer": {
       "default_tier": "T2",
-      "route": ["google/gemini-3.7-flash", "meta/muse-spark-1.2-contributor", "opencode/mimo-v2.5-free", "command-code/minimax-m3", "command-code/gpt-5.6-luna"]
+      "route": ["google/gemini-3.7-flash", "command-code/muse-spark-1.2-contributor", "opencode/mimo-v2.5-free", "command-code/minimax-m3", "command-code/gpt-5.6-luna"]
     },
     "accessibility-reviewer": {
       "default_tier": "T1",
@@ -83,20 +83,20 @@
     },
     "tester": {
       "default_tier": "T0",
-      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"]
+      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/big-pickle", "command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna"]
     },
     "quality-reviewer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "meta/muse-spark-1.2-contributor", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
+      "route": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/muse-spark-1.2-contributor", "google/gemini-3.7-flash", "command-code/gpt-5.6-luna"]
     },
     "reviewer": {
       "default_tier": "T1",
-      "route": ["opencode/deepseek-v4-flash-free", "meta/muse-spark-1.2-contributor", "google/gemini-3.7-flash", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
+      "route": ["opencode/deepseek-v4-flash-free", "command-code/muse-spark-1.2-contributor", "google/gemini-3.7-flash", "command-code/deepseek-v4-flash", "command-code/gpt-5.6-luna", "command-code/glm-5.2"],
       "critical_mode": "T5"
     },
     "debugger": {
       "default_tier": "T2",
-      "route": ["meta/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"]
+      "route": ["command-code/muse-spark-1.2-contributor", "command-code/deepseek-v4-flash", "command-code/minimax-m3", "command-code/gpt-5.6-luna", "command-code/glm-5.2", "google/gemini-3.7-flash"]
     },
     "documentation-maintainer": {
       "default_tier": "T1",
@@ -104,7 +104,7 @@
     },
     "release-verifier": {
       "default_tier": "T0",
-      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "meta/muse-spark-1.2-contributor", "command-code/gpt-5.6-luna"],
+      "route": ["deterministic-tools", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "command-code/muse-spark-1.2-contributor", "command-code/gpt-5.6-luna"],
       "critical_release": "T5"
     },
     "issue-author": {
