@@ -80,7 +80,7 @@
       {"id": "deepseek-v4-flash-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
       {"id": "mimo-v2.5-free", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
       {"id": "big-pickle", "provider": "opencode", "effort": "maximum-supported", "tier": "T1", "sensitive_context": false},
-      {"id": "muse-spark-1.2-contributor", "provider": "meta", "effort": "high", "tier": "T2-T3", "sensitive_context": false, "data_policy": "contributor"},
+      {"id": "muse-spark-1.2-contributor", "provider": "command-code", "effort": "high", "tier": "T2-T3", "sensitive_context": false, "data_policy": "contributor-restricted"},
       {"id": "deepseek-v4-flash", "provider": "command-code", "effort": "high", "tier": "T2", "sensitive_context": true},
       {"id": "minimax-m3", "provider": "command-code", "effort": "high", "tier": "T2", "sensitive_context": true},
       {"id": "gemini-3.7-flash", "provider": "google", "effort": "high", "tier": "T2-T3", "sensitive_context": true},
