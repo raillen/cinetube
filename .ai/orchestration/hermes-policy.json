@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "type": "project-atlas-hermes-bridge",
+  "bootstrap": ".hermes.md",
+  "first_project_document": "ENTRYPOINT.md",
+  "mode": "fail-closed",
+  "canonical_sources": {
+    "model_policy": ".ai/orchestration/model-policy.json",
+    "model_catalog": ".ai/orchestration/model-catalog.json",
+    "model_routing": ".ai/orchestration/model-routing.json",
+    "fallbacks": ".ai/orchestration/fallbacks.json",
+    "human_guide": "docs/developer/HERMES_INTEGRATION.md"
+  },
+  "runtime": {
+    "provider_auto_allowed": false,
+    "implicit_provider_fallback_allowed": false,
+    "implicit_model_fallback_allowed": false,
+    "unlisted_model_allowed": false,
+    "provider_substitution_allowed": false,
+    "base_url_override_requires_explicit_verified_mapping": true,
+    "runtime_identity_must_be_recorded": true
+  },
+  "provider_mapping": {
+    "policy": "explicit-only",
+    "rules": [
+      "Atlas logical provider names are not automatically Hermes provider IDs.",
+      "A mapping is valid only when the Hermes profile/config points to the exact intended service and model.",
+      "Do not map Command Code to OpenRouter, Nous Portal, auto, or another aggregator merely because the same base model exists there.",
+      "Do not map OpenCode to an arbitrary Hermes OpenCode provider without verifying that it is the exact OpenCode service intended by the Atlas catalog.",
+      "Google models may use Hermes native Gemini routing only after the account/provider/model identity is verified."
+    ],
+    "on_missing_mapping": "abort"
+  },
+  "effort_mapping": {
+    "high": "high",
+    "extra-high": "xhigh",
+    "maximum-supported": "highest-supported-by-exact-runtime-route",
+    "downgrade_allowed": false
+  },
+  "main_model": {
+    "must_be_resolved_before_session": true,
+    "cli_override_allowed": true,
+    "cli_override_requires_exact_approved_pair": true,
+    "session_model_switch_requires_revalidation": true
+  },
+  "delegation": {
+    "enabled_only_after_route_resolution": true,
+    "inherit_parent_implicitly": false,
+    "provider_model_effort_must_be_explicit_or_proven_equivalent_to_resolved_route": true,
+    "fallback_to_main_model_after_auxiliary_failure_allowed": false,
+    "wrong_identity_invalidates_evidence": true
+  },
+  "auxiliary_models": {
+    "policy": "approved-only",
+    "must_not_bypass_model_catalog": true,
+    "compression": "resolve-cheapest-approved-safe-route",
+    "vision": "resolve-approved-multimodal-route",
+    "web_extraction": "resolve-cheapest-approved-safe-route",
+    "approval": "resolve-approved-review-route",
+    "mcp_routing": "resolve-cheapest-approved-safe-route",
+    "session_title": "prefer-deterministic-or-cheapest-approved-safe-route",
+    "skill_search": "prefer-deterministic-or-cheapest-approved-safe-route"
+  },
+  "preflight": {
+    "required": true,
+    "fields": [
+      "goal_or_task_id",
+      "atlas_agent",
+      "tier",
+      "logical_provider",
+      "hermes_runtime_provider",
+      "model",
+      "atlas_effort",
+      "hermes_reasoning_effort",
+      "sensitivity",
+      "acceptance_evidence"
+    ],
+    "unresolved_field_action": "abort"
+  },
+  "evidence": {
+    "actual_provider_required": true,
+    "actual_model_required": true,
+    "actual_effort_required": true,
+    "policy_mismatch_action": "invalidate-execution"
+  },
+  "failure_codes": {
+    "no_approved_pair": "HERMES_NO_APPROVED_MODEL_PROVIDER_AVAILABLE",
+    "preflight_failed": "HERMES_PREFLIGHT_FAILED",
+    "identity_mismatch": "HERMES_MODEL_PROVIDER_POLICY_VIOLATION",
+    "delegation_mismatch": "HERMES_DELEGATION_POLICY_VIOLATION",
+    "critical_independence_unavailable": "CROSS_PROVIDER_VERIFICATION_UNAVAILABLE"
+  }
+}
