@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "framework": {
     "name": "project-atlas-framework",
     "version": "0.2.0"
@@ -60,7 +60,9 @@
     "track_cost": true,
     "distinguish_observed_estimated": true,
     "track_model_tier": true,
-    "track_fallback_reason": true
+    "track_fallback_reason": true,
+    "track_actual_provider_model_pair": true,
+    "invalidate_evidence_on_model_policy_violation": true
   },
   "orchestration": {
     "protocol": "POP",
@@ -70,7 +72,9 @@
     "model_policy": ".ai/orchestration/model-policy.json",
     "model_catalog": ".ai/orchestration/model-catalog.json",
     "model_routing": ".ai/orchestration/model-routing.json",
-    "fallbacks": ".ai/orchestration/fallbacks.json"
+    "fallbacks": ".ai/orchestration/fallbacks.json",
+    "traycer_policy": ".ai/orchestration/traycer-policy.json",
+    "traycer_handoff_template": ".ai/orchestration/traycer-handoff-template.md"
   },
   "goals": {"active_phase": "P00", "active_goal": "P00-G01"},
   "ai": {
@@ -89,9 +93,20 @@
       {"id": "gemini-3.1-pro", "provider": "google", "effort": "high", "tier": "T4-T5", "sensitive_context": true}
     ],
     "routing": "task-risk-evidence-cost",
-    "provider_lock_in": false,
+    "provider_lock_in": true,
+    "provider_model_pair_is_identity": true,
     "effort_downgrade_allowed": false,
-    "restricted_data_routes_allowed_for_sensitive_context": false
+    "restricted_data_routes_allowed_for_sensitive_context": false,
+    "traycer": {
+      "enabled": true,
+      "enforcement": "fail-closed",
+      "agents_md_required": true,
+      "custom_model_profile_required": true,
+      "custom_handoff_template_required": true,
+      "automatic_model_or_provider_substitution_allowed": false,
+      "unresolved_handoff_allowed": false,
+      "policy": ".ai/orchestration/traycer-policy.json"
+    }
   },
   "protocol": {"version": 3, "compatible": ">=3 <4"}
 }
